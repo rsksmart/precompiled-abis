@@ -308,7 +308,6 @@
     type: 'string'
   }]
 }, {
-  // This method is available since RFS-170 fork activation
   name: 'getLockWhitelistEntryByAddress',
   type: 'function',
   constant: true,
@@ -321,23 +320,6 @@
     type: 'int256'
   }]
 }, {
-  // This method is deprecated since RFS-170 fork activation
-  name: 'addLockWhitelistAddress',
-  type: 'function',
-  constant: false,
-  inputs: [{
-    name: 'address',
-    type: 'string'
-  },{
-    name: 'maxTransferValue',
-    type: 'int256'
-  }],
-  outputs: [{
-    name: '',
-    type: 'int256'
-  }]
-}, {
-  // This method is available since RFS-170 fork activation
   name: 'addOneOffLockWhitelistAddress',
   type: 'function',
   constant: false,
@@ -353,7 +335,6 @@
     type: 'int256'
   }]
 }, {
-  // This method is available since RFS-170 fork activation
   name: 'addUnlimitedLockWhitelistAddress',
   type: 'function',
   constant: false,

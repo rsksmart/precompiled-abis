@@ -1,6 +1,6 @@
 {
   "name": "rsk-precompiled-abis",
-  "version": "ORCHID-1.0.0",
+  "version": "ORCHID-1.0.1",
   "description": "",
   "main": "index.js",
   "scripts": {
