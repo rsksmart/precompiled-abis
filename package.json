@@ -1,0 +1,16 @@
+{
+  "name": "@rsksmart/rsk-precompiled-abis",
+  "version": "1.0.0-ORCHID",
+  "description": "Utility to interact with RSK native contracts",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha ./tests/*"
+  },
+  "license": "ISC",
+  "dependencies": {
+    "web3": "^1.2.1"
+  },
+  "devDependencies": {
+    "mocha": "^6.2.0"
+  }
+}
