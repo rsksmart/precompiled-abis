@@ -1,0 +1,12 @@
+{
+  "name": "rsk-precompiled-abis",
+  "version": "1.0.0-ORCHID",
+  "description": "Utility to interact with RSK native contracts",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "license": "ISC",
+  "dependencies": {
+    "web3": "^1.2.1"
+  }
+}
