@@ -1,0 +1,82 @@
+[
+  {
+    "constant": false,
+    "inputs": [
+      {
+        "name": "minimumSignatures",
+        "type": "int256"
+      },
+      {
+        "name": "xpubs",
+        "type": "bytes[]"
+      }
+    ],
+    "name": "getMultisigScriptHash",
+    "outputs": [
+      {
+        "name": "result",
+        "type": "bytes"
+      }
+    ],
+    "type": "function"
+  },
+  {
+    "constant": false,
+    "inputs": [
+      {
+        "name": "xpub",
+        "type": "string"
+      }
+    ],
+    "name": "extractPublicKeyFromExtendedPublicKey",
+    "outputs": [
+      {
+        "name": "result",
+        "type": "bytes"
+      }
+    ],
+    "type": "function"
+  },
+  {
+    "constant": false,
+    "inputs": [
+      {
+        "name": "xpub",
+        "type": "string"
+      },
+      {
+        "name": "path",
+        "type": "string"
+      }
+    ],
+    "name": "deriveExtendedPublicKey",
+    "outputs": [
+      {
+        "name": "result",
+        "type": "string"
+      }
+    ],
+    "type": "function"
+  },
+  {
+    "constant": false,
+    "inputs": [
+      {
+        "name": "hash",
+        "type": "bytes"
+      },
+      {
+        "name": "version",
+        "type": "int256"
+      }
+    ],
+    "name": "toBase58Check",
+    "outputs": [
+      {
+        "name": "result",
+        "type": "string"
+      }
+    ],
+    "type": "function"
+  }
+]

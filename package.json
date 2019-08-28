@@ -1,6 +1,6 @@
 {
   "name": "@rsksmart/rsk-precompiled-abis",
-  "version": "1.0.0-ORCHID",
+  "version": "2.0.0-WASABI",
   "description": "Utility to interact with RSK native contracts",
   "main": "index.js",
   "scripts": {

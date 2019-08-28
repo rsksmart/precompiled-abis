@@ -14,7 +14,11 @@ For the installation of these package you must execute in a terminal window:
 
          npm install @rsksmart/rsk-precompiled-abis@<version>
 
+# Important note:
+If the version to be installed is not defined in the command line, the version will correspond to the latest version in WASABI.
+
 # Versioning table. 
 | Package Version | RSK version   |  
 |-----------------|---------------|
 | 1.0.0-ORCHID    | ORCHID-0.6.2  |
+| 2.0.0-WASABI    | WASABI-1.0.0  | 
