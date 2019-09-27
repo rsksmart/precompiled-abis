@@ -1,8 +1,13 @@
 {
   "name": "@rsksmart/rsk-precompiled-abis",
-  "version": "2.0.0-WASABI",
+  "version": "2.0.1-WASABI",
   "description": "Utility to interact with RSK native contracts",
   "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/rsksmart/precompiled-abis.git"
+  },
+  "homepage": "https://www.rsk.co",
   "scripts": {
     "test": "mocha ./tests/*"
   },
