@@ -1,3 +1,5 @@
+<img src="/RSK_Logo_RGB_300dpi.png" alt="logo" height="200" />
+
 # Welcome to the precompiled ABIs from RSK repository. 
 
 This repository contains the precompiled contracts used by RSK and was created to be used by npm package modules.
@@ -21,4 +23,5 @@ If the version to be installed is not defined in the command line, the version w
 | Package Version | RSK version   |  
 |-----------------|---------------|
 | 1.0.0-ORCHID    | ORCHID-0.6.2  |
-| 2.0.0-WASABI    | WASABI-1.0.0  | 
+| 2.0.0-WASABI    | WASABI-1.0.0  |
+| 2.0.1-WASABI    | WASABI-1.0.0  | 
