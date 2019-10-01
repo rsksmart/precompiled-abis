@@ -505,4 +505,25 @@
       "name": "",
       "type": "int256"
     }]
-  }]
+  }, {
+    "name": "getLockingCap",
+    "type": "function",
+    "constant": true,
+    "inputs": [],
+    "outputs": [{
+      "name": "",
+      "type": "int256"
+    }]
+  }, {
+    "name": "increaseLockingCap",
+    "type": "function",
+    "constant": true,
+    "inputs":[{
+      "name": "newLockingCap",
+      "type": "int256"
+    }],
+    "outputs":[{
+      "name": "",
+      "type": "bool"
+    }]
+}]
