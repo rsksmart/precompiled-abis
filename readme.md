@@ -16,6 +16,27 @@ For the installation of these package you must execute in a terminal window:
 
          npm install @rsksmart/rsk-precompiled-abis@<version>
 
+As an example to define and use it:
+
+1) Include Web3 package.
+
+         const Web3 = require('web3');
+
+2) Include precompiled-abis package.
+
+        const precompiled = require('@rsksmart/rsk-precompiled-abis');
+
+3) Create an instance of the contract using package build method and Web3 as a parameter. 
+
+    (i.e.: using Bridge)
+
+        var bridge = precompiled.bridge.build(new Web3('http://localhost:4444'));
+
+4) Example that explains how to use it using a contract's method. In this case calling getFederationAddress, and showing in console the result of this method.
+        
+        bridge.methods.getFederationAddress().call().then(console.log);
+
+
 # Important note:
 If the version to be installed is not defined in the command line, the version will correspond to the latest version in WASABI.
 
