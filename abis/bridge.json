@@ -526,4 +526,139 @@
       "name": "",
       "type": "bool"
     }]
-}]
+  }, {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": true,
+        "name": "receiver",
+        "type": "address"
+      },
+      {
+        "indexed": false,
+        "name": "btcTxHash",
+        "type": "bytes32"
+      },
+      {
+        "indexed": false,
+        "name": "senderBtcAddress",
+        "type": "string"
+      },
+      {
+        "indexed": false,
+        "name": "amount",
+        "type": "int"
+      }
+    ],
+    "name": "lock_btc",
+    "type": "event"
+  }, {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": false,
+        "name": "sender",
+        "type": "address"
+      }
+    ],
+    "name": "update_collections",
+    "type": "event"
+  }, {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": true,
+        "name": "releaseRskTxHash",
+        "type": "bytes32"
+      }, 
+      {
+        "indexed": true,
+        "name": "federatorRskAddress",
+        "type": "address"
+      },       
+      {
+        "indexed": false,
+        "name": "federatorBtcPublicKey",
+        "type": "bytes"
+      }
+    ],
+    "name": "add_signature",
+    "type": "event"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": true,
+        "name": "releaseRskTxHash",
+        "type": "bytes32"
+      }, 
+      {
+        "indexed": false,
+        "name": "btcRawTransaction",
+        "type": "bytes"
+      }
+    ],
+    "name": "release_btc",
+    "type": "event"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": false,
+        "name": "oldFederationBtcPublicKeys",
+        "type": "bytes"
+      }, 
+      {
+        "indexed": false,
+        "name": "oldFederationBtcAddress",
+        "type": "string"
+      }, 
+      {
+        "indexed": false,
+        "name": "newFederationBtcPublicKeys",
+        "type": "bytes"
+      }, 
+      {
+        "indexed": false,
+        "name": "newFederationBtcAddress",
+        "type": "string"
+      }, 
+      {
+        "indexed": false,
+        "name": "activationHeight",
+        "type": "int256"
+      }
+    ],
+    "name": "commit_federation",
+    "type": "event"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": true,
+        "name": "sender",
+        "type": "address"
+      }, 
+      {
+        "indexed": true,
+        "name": "rskTxHash",
+        "type": "bytes32"
+      }, 
+      {
+        "indexed": true,
+        "name": "btcTxHash",
+        "type": "bytes32"
+      }, 
+      {
+        "indexed": false,
+        "name": "amount",
+        "type": "uint"
+      }
+    ],
+    "name": "release_requested",
+    "type": "event"
+  }
+]
