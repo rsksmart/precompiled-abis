@@ -839,11 +839,6 @@
     "inputs": [
       {
         "indexed": true,
-        "name": "sender",
-        "type": "address"
-      },
-      {
-        "indexed": true,
         "name": "rskTxHash",
         "type": "bytes32"
       },
@@ -855,7 +850,7 @@
       {
         "indexed": false,
         "name": "amount",
-        "type": "uint"
+        "type": "uint256"
       }
     ],
     "name": "release_requested",
