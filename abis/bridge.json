@@ -725,6 +725,50 @@
     ]
   },
   {
+    "name": "registerBtcCoinbaseTransaction",
+    "type": "function",
+    "constant": true,
+    "inputs": [
+      {
+        "name": "btcTxSerialized",
+        "type": "bytes"
+      },
+      {
+        "name": "blockHash",
+        "type": "bytes32"
+      },  
+      {
+        "name": "pmtSerialized",
+        "type": "bytes32[]"
+      },
+      {
+        "name": "witnessMerkleRoot",
+        "type": "bytes32"
+      }, {
+        "name": "witnessReservedValue",
+        "type": "bytes32"
+      }
+    ],
+    "outputs": []
+  },
+  {
+    "name": "hasBtcBlockCoinbaseTransactionInformation",
+    "type": "function",
+    "constant": true,
+    "inputs": [
+      {
+        "name": "blockHash",
+        "type": "bytes32"
+      }
+    ],
+    "outputs": [
+      {
+        "name": "",
+        "type": "bool"
+      }
+    ]
+  },
+  {
     "anonymous": false,
     "inputs": [
       {
