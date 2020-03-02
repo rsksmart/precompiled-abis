@@ -50,7 +50,7 @@ bridge.methods.getFederationAddress().call().then(console.log);
 
 # Important note
 
-If the version to be installed is not defined in the command line, the version will correspond to the latest version in WASABI.
+If the version to be installed is not defined in the command line, the version will correspond to the latest version in PAPYRUS.
 
 # Versioning table
 
@@ -59,3 +59,4 @@ If the version to be installed is not defined in the command line, the version w
 | 1.0.0-ORCHID    | ORCHID-0.6.2  |
 | 2.0.0-WASABI    | WASABI-1.0.0  |
 | 2.0.1-WASABI    | WASABI-1.0.0  |
+| 3.0.0-PAPYRUS   | PAPYRUS-2.0.0 |
