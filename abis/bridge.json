@@ -739,7 +739,7 @@
       },  
       {
         "name": "pmtSerialized",
-        "type": "bytes32[]"
+        "type": "bytes"
       },
       {
         "name": "witnessMerkleRoot",
