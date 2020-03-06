@@ -1,6 +1,6 @@
 {
   "name": "@rsksmart/rsk-precompiled-abis",
-  "version": "2.0.1-WASABI",
+  "version": "3.0.0-PAPYRUS",
   "description": "Utility to interact with RSK native contracts",
   "main": "index.js",
   "repository": {
@@ -13,7 +13,7 @@
   },
   "license": "ISC",
   "dependencies": {
-    "web3": "^1.2.1"
+    "web3": "^1.2.6"
   },
   "devDependencies": {
     "mocha": "^6.2.0"
