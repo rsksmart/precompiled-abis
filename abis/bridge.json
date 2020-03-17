@@ -801,7 +801,7 @@
       {
         "indexed": false,
         "name": "amount",
-        "type": "int"
+        "type": "int256"
       }
     ],
     "name": "lock_btc",
