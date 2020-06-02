@@ -48,6 +48,14 @@ var bridge = precompiled.bridge.build(new Web3('http://localhost:4444'));
 bridge.methods.getFederationAddress().call().then(console.log);
 ```
 
+# Browser
+
+Generate the browser bundle (UMD):
+
+```shell
+npm run build-umd
+```
+
 # Important note
 
 If the version to be installed is not defined in the command line, the version will correspond to the latest version in PAPYRUS.

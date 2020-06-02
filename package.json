@@ -9,6 +9,7 @@
   },
   "homepage": "https://www.rsk.co",
   "scripts": {
+    "build-umd": "rollup --config rollup.umd.config.js",
     "test": "mocha ./tests/*"
   },
   "license": "ISC",
@@ -16,6 +17,10 @@
     "web3": "^1.2.6"
   },
   "devDependencies": {
-    "mocha": "^7.1.2"
+    "mocha": "^7.1.2",
+    "rollup": "2.10.5",
+    "rollup-plugin-commonjs": "10.1.0",
+    "rollup-plugin-node-resolve": "5.2.0",
+    "rollup-plugin-json": "4.0.0"
   }
 }
