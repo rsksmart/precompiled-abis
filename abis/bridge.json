@@ -781,6 +781,51 @@
     ]
   },
   {
+    "name": "registerBtcTransfer",
+    "type": "function",
+    "constant": true,
+    "inputs": [
+      {
+        "name": "btcTxSerialized",
+        "type": "bytes"
+      },
+      {
+        "name": "height",
+        "type": "int"
+      }, 
+      {
+        "name": "pmtSerialized",
+        "type": "bytes"
+      },  
+      {
+        "name": "derivationArgumentsHash",
+        "type": "bytes32"
+      },
+      {
+        "name": "userRefundBtcAddress",
+        "type": "bytes"
+      }, 
+      {
+        "name": "liquidityBridgeContractAddress",
+        "type": "string"
+      }, 
+      {
+        "name": "liquidityProviderBtcAddress",
+        "type": "bytes"
+      }, 
+      {
+        "name": "shouldTransferToContract",
+        "type": "bool"
+      }
+    ],
+    "outputs": [
+      {
+        "name": "",
+        "type": "int256"
+      }
+    ]
+  },
+  {
     "anonymous": false,
     "inputs": [
       {
