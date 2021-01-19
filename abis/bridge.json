@@ -956,5 +956,66 @@
     ],
     "name": "release_requested",
     "type": "event"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": true,
+        "name": "receiver",
+        "type": "address"
+      },
+      {
+        "indexed": true,
+        "name": "btcTxHash",
+        "type": "bytes32"
+      },
+      {
+        "indexed": false,
+        "name": "amount",
+        "type": "int256"
+      },
+      {
+        "indexed": false,
+        "name": "protocolVersion",
+        "type": "int256"
+      }
+    ],
+    "name": "pegin_btc",
+    "type": "event"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": true,
+        "name": "btcTxHash",
+        "type": "bytes32"
+      },
+      {
+        "indexed": false,
+        "name": "reason",
+        "type": "int256"
+      }
+    ],
+    "name": "rejected_pegin",
+    "type": "event"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": true,
+        "name": "btcTxHash",
+        "type": "bytes32"
+      },
+      {
+        "indexed": false,
+        "name": "reason",
+        "type": "int256"
+      }
+    ],
+    "name": "unrefundable_pegin",
+    "type": "event"
   }
 ]
