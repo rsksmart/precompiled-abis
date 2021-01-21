@@ -163,6 +163,23 @@
     "outputs": []
   },
   {
+    "name": "receiveHeader",
+    "type": "function",
+    "constant": true,
+    "inputs": [
+      {
+        "name": "block",
+        "type": "bytes"
+      }
+    ],
+    "outputs": [
+      {
+        "name": "",
+        "type": "int256"
+      }
+    ]
+  },
+  {
     "name": "getFederationSize",
     "type": "function",
     "constant": true,
