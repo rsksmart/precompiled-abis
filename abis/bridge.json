@@ -843,6 +843,81 @@
     ]
   },
   {
+    "name": "getActiveFederationCreationBlockHeight",
+    "type": "function",
+    "constant": true,
+    "inputs": [],
+    "outputs": [
+      {
+        "name": "",
+        "type": "uint256"
+      }
+    ]
+  },
+  {
+    "name": "getBtcBlockchainBestBlockHeader",
+    "type": "function",
+    "constant": true,
+    "inputs": [],
+    "outputs": [
+      {
+        "name": "",
+        "type": "bytes"
+      }
+    ]
+  },
+  {
+    "name": "getBtcBlockchainBlockHeaderByHash",
+    "type": "function",
+    "constant": true,
+    "inputs": [
+      {
+        "name": "btcBlockHash",  
+        "type": "bytes32" 
+      }
+    ],
+    "outputs": [
+      {
+        "name": "",
+        "type": "bytes"
+      }
+    ]
+  },
+  {
+    "name": "getBtcBlockchainBlockHeaderByHeight",
+    "type": "function",
+    "constant": true,
+    "inputs": [
+      {
+        "name": "btcBlockHeight", 
+        "type": "uint256" 
+      }
+    ],
+    "outputs": [
+      {
+        "name": "",
+        "type": "bytes"
+      }
+    ]
+  },
+  {
+    "name": "getBtcBlockchainParentBlockHeaderByHash",
+    "type": "function",
+    "constant": true,
+    "inputs": [
+      {
+        "name": "btcBlockHash", 
+        "type": "bytes32" 
+      }
+    ],
+    "outputs": [
+      {
+        "name": "",
+        "type": "bytes"
+      }
+    ]
+  },
+  {
     "anonymous": false,
     "inputs": [
       {
