@@ -163,6 +163,23 @@
     "outputs": []
   },
   {
+    "name": "receiveHeader",
+    "type": "function",
+    "constant": true,
+    "inputs": [
+      {
+        "name": "block",
+        "type": "bytes"
+      }
+    ],
+    "outputs": [
+      {
+        "name": "",
+        "type": "int256"
+      }
+    ]
+  },
+  {
     "name": "getFederationSize",
     "type": "function",
     "constant": true,
@@ -826,6 +843,81 @@
     ]
   },
   {
+    "name": "getActiveFederationCreationBlockHeight",
+    "type": "function",
+    "constant": true,
+    "inputs": [],
+    "outputs": [
+      {
+        "name": "",
+        "type": "uint256"
+      }
+    ]
+  },
+  {
+    "name": "getBtcBlockchainBestBlockHeader",
+    "type": "function",
+    "constant": true,
+    "inputs": [],
+    "outputs": [
+      {
+        "name": "",
+        "type": "bytes"
+      }
+    ]
+  },
+  {
+    "name": "getBtcBlockchainBlockHeaderByHash",
+    "type": "function",
+    "constant": true,
+    "inputs": [
+      {
+        "name": "btcBlockHash",  
+        "type": "bytes32" 
+      }
+    ],
+    "outputs": [
+      {
+        "name": "",
+        "type": "bytes"
+      }
+    ]
+  },
+  {
+    "name": "getBtcBlockchainBlockHeaderByHeight",
+    "type": "function",
+    "constant": true,
+    "inputs": [
+      {
+        "name": "btcBlockHeight", 
+        "type": "uint256" 
+      }
+    ],
+    "outputs": [
+      {
+        "name": "",
+        "type": "bytes"
+      }
+    ]
+  },
+  {
+    "name": "getBtcBlockchainParentBlockHeaderByHash",
+    "type": "function",
+    "constant": true,
+    "inputs": [
+      {
+        "name": "btcBlockHash", 
+        "type": "bytes32" 
+      }
+    ],
+    "outputs": [
+      {
+        "name": "",
+        "type": "bytes"
+      }
+    ]
+  },
+  {
     "anonymous": false,
     "inputs": [
       {
@@ -955,6 +1047,67 @@
       }
     ],
     "name": "release_requested",
+    "type": "event"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": true,
+        "name": "receiver",
+        "type": "address"
+      },
+      {
+        "indexed": true,
+        "name": "btcTxHash",
+        "type": "bytes32"
+      },
+      {
+        "indexed": false,
+        "name": "amount",
+        "type": "int256"
+      },
+      {
+        "indexed": false,
+        "name": "protocolVersion",
+        "type": "int256"
+      }
+    ],
+    "name": "pegin_btc",
+    "type": "event"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": true,
+        "name": "btcTxHash",
+        "type": "bytes32"
+      },
+      {
+        "indexed": false,
+        "name": "reason",
+        "type": "int256"
+      }
+    ],
+    "name": "rejected_pegin",
+    "type": "event"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": true,
+        "name": "btcTxHash",
+        "type": "bytes32"
+      },
+      {
+        "indexed": false,
+        "name": "reason",
+        "type": "int256"
+      }
+    ],
+    "name": "unrefundable_pegin",
     "type": "event"
   }
 ]
