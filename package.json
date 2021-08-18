@@ -17,5 +17,6 @@
   },
   "devDependencies": {
     "mocha": "^7.1.2"
-  }
+  },
+  "types": "./types/index.d.ts"
 }
