@@ -1,6 +1,6 @@
 {
   "name": "@rsksmart/rsk-precompiled-abis",
-  "version": "4.0.1-IRIS",
+  "version": "4.0.2-IRIS",
   "description": "Utility to interact with RSK native contracts",
   "main": "index.js",
   "repository": {
