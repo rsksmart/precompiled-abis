@@ -918,6 +918,42 @@
     ]
   },
   {
+    "name": "getEstimatedFeesForNextPegOutEvent",
+    "type": "function",
+    "constant": true,
+    "inputs": [],
+    "outputs": [
+      {
+        "name": "",
+        "type": "uint256"
+      }
+    ]
+  },
+  {
+    "name": "getNextPegoutCreationBlockNumber",
+    "type": "function",
+    "constant": true,
+    "inputs": [],
+    "outputs": [
+      {
+        "name": "",
+        "type": "uint256"
+      }
+    ]
+  },
+  {
+    "name": "getQueuedPegoutsCount",
+    "type": "function",
+    "constant": true,
+    "inputs": [],
+    "outputs": [
+      {
+        "name": "",
+        "type": "uint256"
+      }
+    ]
+  },
+  {
     "anonymous": false,
     "inputs": [
       {
@@ -1152,6 +1188,23 @@
       }
     ],
     "name": "release_request_rejected",
+    "type": "event"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": true,
+        "name": "btcTxHash",
+        "type": "bytes32"
+      },
+      {
+        "indexed": false,
+        "name": "releaseRskTxHashes",
+        "type": "bytes"
+      }
+    ],
+    "name": "batch_pegout_created",
     "type": "event"
   }
 ]
