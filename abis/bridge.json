@@ -954,6 +954,13 @@
     ]
   },
   {
+    "name": "releaseBtc",
+    "type": "function",
+    "constant": true,
+    "inputs": [],
+    "outputs": []
+  },
+  {
     "anonymous": false,
     "inputs": [
       {
