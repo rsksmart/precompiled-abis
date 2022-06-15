@@ -1,13 +1,13 @@
 {
   "name": "@rsksmart/rsk-precompiled-abis",
-  "version": "5.0.1-HOP",
+  "version": "5.0.0-HOP",
   "description": "Utility to interact with RSK native contracts",
   "main": "index.js",
   "repository": {
     "type": "git",
     "url": "https://github.com/rsksmart/precompiled-abis.git"
   },
-  "homepage": "https://www.rsk.co",
+  "homepage": "https://github.com/rsksmart/precompiled-abis#readme",
   "scripts": {
     "test": "mocha ./tests/*"
   },
