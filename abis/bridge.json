@@ -961,6 +961,18 @@
     "outputs": []
   },
   {
+    "name": "getActivePowpegRedeemScript",
+    "type": "function",
+    "constant": true,
+    "inputs": [],
+    "outputs": [
+      {
+        "name": "",
+        "type": "bytes"
+      }
+    ]
+  },
+  {
     "anonymous": false,
     "inputs": [
       {
