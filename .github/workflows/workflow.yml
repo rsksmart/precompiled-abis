@@ -1,0 +1,23 @@
+name: CI/CD Using Github actions workflow
+on: [push, pull_request]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout 🛎️
+        uses: actions/checkout@v2
+        with:
+          persist-credentials: false
+
+      - name: Node & Npm Version
+        run: |
+          node -v
+          npm -v
+
+      - name: Install 🔧
+        run: npm ci
+
+      - name: Test 🚨
+        run: npm test
