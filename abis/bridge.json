@@ -976,11 +976,16 @@
     "name": "getPegoutCreationRskTxHashByBtcTxHash",
     "type": "function",
     "constant": true,
-    "inputs": [],
+    "inputs": [
+      {
+        "name": "btcTxHash",
+        "type": "bytes32"
+      }
+    ],
     "outputs": [
       {
         "name": "",
-        "type": "bytes"
+        "type": "bytes32"
       }
     ]
   },
