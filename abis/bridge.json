@@ -973,6 +973,18 @@
     ]
   },
   {
+    "name": "getPegoutCreationRskTxHashByBtcTxHash",
+    "type": "function",
+    "constant": true,
+    "inputs": [],
+    "outputs": [
+      {
+        "name": "",
+        "type": "bytes"
+      }
+    ]
+  },
+  {
     "anonymous": false,
     "inputs": [
       {
