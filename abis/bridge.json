@@ -1242,5 +1242,22 @@
     ],
     "name": "batch_pegout_created",
     "type": "event"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": true,
+        "name": "btcTxHash",
+        "type": "bytes32"
+      },
+      {
+        "indexed": false,
+        "name": "pegoutCreationRskBlockNumber",
+        "type": "uint256"
+      }
+    ],
+    "name": "pegout_confirmed",
+    "type": "event"
   }
 ]
