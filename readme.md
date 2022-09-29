@@ -50,7 +50,7 @@ bridge.methods.getFederationAddress().call().then(console.log);
 
 # Important note
 
-If the version to be installed is not defined in the command line, the version will correspond to the latest version in HOP.
+If the version to be installed is not defined in the command line, the version will correspond to the latest version in FINGERROOT.
 
 # Versioning table
 
@@ -63,3 +63,4 @@ If the version to be installed is not defined in the command line, the version w
 | 4.0.0-IRIS      | IRIS-3.0.0    |
 | 4.0.2-IRIS      | IRIS-3.0.0    |
 | 5.0.0-HOP       | HOP-4.0.0     |
+| 6.0.0-FINGERROOT| FINGERROOT-5.0.0|
