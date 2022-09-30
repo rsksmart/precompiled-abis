@@ -1,6 +1,6 @@
 {
   "name": "@rsksmart/rsk-precompiled-abis",
-  "version": "6.0.0-HOP",
+  "version": "6.0.0-FINGERROOT",
   "description": "Utility to interact with RSK native contracts",
   "main": "index.js",
   "repository": {
