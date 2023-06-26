@@ -1,17 +1,17 @@
 ![Github CI/CD](https://github.com/rsksmart/precompiled-abis/actions/workflows/workflow.yml/badge.svg)
 [![CodeQL](https://github.com/rsksmart/precompiled-abis/workflows/CodeQL/badge.svg)](https://github.com/rsksmart/precompiled-abis/actions?query=workflow%3ACodeQL)
 
-<img src="./rootstock_logo.png" alt="Rootstock" height="200" />
+<img src="./rootstock_logo.png" alt="Rootstock" />
 
-# Welcome to the precompiled ABIs from RSK.
+# Welcome to the precompiled ABIs from Rootstock
 
-Here you will find the ABIs for the existing precompiled contracts in RSK. You will also get their addresses and a builder to use it with web3js.
+Here you will find the ABIs for the existing precompiled contracts in Rootstock. You will also get their addresses and a builder to use it with [web3js](https://www.npmjs.com/package/web3).
 
 # Version
 
-Different versions of the package mentioned are required for different RSK releases.
+Different versions of the package mentioned are required for different Rootstock releases.
 
-The semantic versioning of this package doesn’t correlate to the semantic versioning of RSK. For each named release of RSK, there will be a corresponding name version in npm.
+Until Fingerroot, the semantic versioning of this package doesn’t correlate to the semantic versioning of Rootstock. For each named release of Rootstock, there will be a corresponding name version in npm.
 
 This package's support starts with ORCHID.
 
