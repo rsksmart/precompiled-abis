@@ -12,11 +12,9 @@
     "test": "mocha ./tests/*"
   },
   "license": "ISC",
-  "dependencies": {
-    "web3": "^4.0.1"
-  },
   "devDependencies": {
-    "mocha": "^10.2.0"
+    "mocha": "^10.2.0",
+    "web3": "^4.0.1"
   },
   "types": "./types/index.d.ts"
 }
