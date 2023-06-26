@@ -1,5 +1,5 @@
 const assert = require('assert');
-const Web3 = require('web3');
+const { Web3 } = require('web3');
 const bridge = require('../bridge');
 
 describe('Bridge', () => {
