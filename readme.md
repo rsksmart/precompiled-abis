@@ -1,4 +1,5 @@
 ![Github CI/CD](https://github.com/rsksmart/precompiled-abis/actions/workflows/workflow.yml/badge.svg)
+[![CodeQL](https://github.com/rsksmart/precompiled-abis/workflows/CodeQL/badge.svg)](https://github.com/rsksmart/precompiled-abis/actions?query=workflow%3ACodeQL)
 
 <img src="./RSK_Logo_RGB_300dpi.png" alt="logo" height="200" />
 
