@@ -1,3 +1,5 @@
+![Github CI/CD](https://github.com/rsksmart/precompiled-abis/actions/workflows/workflow.yml/badge.svg)
+
 <img src="./RSK_Logo_RGB_300dpi.png" alt="logo" height="200" />
 
 # Welcome to the precompiled ABIs from RSK.
