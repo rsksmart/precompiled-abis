@@ -54,13 +54,13 @@ If the version to be installed is not defined in the command line, the version w
 
 # Versioning table
 
-| Package Version | RSK version   |
-|-----------------|---------------|
-| 1.0.0-ORCHID    | ORCHID-0.6.2  |
-| 2.0.0-WASABI    | WASABI-1.0.0  |
-| 2.0.1-WASABI    | WASABI-1.0.0  |
-| 3.0.0-PAPYRUS   | PAPYRUS-2.0.0 |
-| 4.0.0-IRIS      | IRIS-3.0.0    |
-| 4.0.2-IRIS      | IRIS-3.0.0    |
-| 5.0.0-HOP       | HOP-4.0.0     |
-| 6.0.0-FINGERROOT| FINGERROOT-5.0.0|
+| Package Version  | RSK version      |
+|------------------|------------------|
+| 1.0.0-ORCHID     | ORCHID-0.6.2     |
+| 2.0.0-WASABI     | WASABI-1.0.0     |
+| 2.0.1-WASABI     | WASABI-1.0.0     |
+| 3.0.0-PAPYRUS    | PAPYRUS-2.0.0    |
+| 4.0.0-IRIS       | IRIS-3.0.0       |
+| 4.0.2-IRIS       | IRIS-3.0.0       |
+| 5.0.0-HOP        | HOP-4.0.0        |
+| 5.0.0-FINGERROOT | FINGERROOT-5.0.0 |
