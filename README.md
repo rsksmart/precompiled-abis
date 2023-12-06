@@ -67,3 +67,4 @@ If the version to be installed is not defined in the command line, the version w
 | 4.0.2-IRIS       | IRIS-3.0.0       |
 | 5.0.0-HOP        | HOP-4.0.0        |
 | 5.0.0-FINGERROOT | FINGERROOT-5.0.0 |
+| 6.0.0-ARROWHEAD  | ARROWHEAD-6.0.0  |
