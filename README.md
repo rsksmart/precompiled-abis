@@ -53,7 +53,7 @@ bridge.methods.getFederationAddress().call().then(console.log);
 
 # Important note
 
-If the version to be installed is not defined in the command line, the version will correspond to the latest version in FINGERROOT.
+If the version to be installed is not defined in the command line, it will install the latest version by default.
 
 # Versioning table
 
