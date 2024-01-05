@@ -252,9 +252,9 @@
         });
 
         if(inputsIndicesWithoutValues.length > 0) {
-            const inputsWithoutValues = inputsIndicesWithoutValues.map(index => inputs[index].placeholder);
-            const inputsWithoutValuesString = inputsWithoutValues.join(', ');
-            alert(`Inputs (${inputsWithoutValuesString}) must be filled`);
+            const inputsWithoutValues = inputsIndicesWithoutValues.map(index => inputs[index].placeholder.trim());
+            const inputsWithoutValuesString = "\"" + inputsWithoutValues.join('", "') + "\"";
+            alert(`Inputs ${inputsWithoutValuesString} must be filled`);
             throw new Error(`Inputs ${inputsWithoutValuesString} must be filled`);
         }
 
