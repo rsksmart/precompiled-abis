@@ -16,8 +16,29 @@
 }
 
 #network-selection-container {
-    width: 550px;
+    width: 720px;
     margin: 8px;
+}
+
+.display {
+    overflow: scroll;
+}
+
+#custom-network-container {
+    display: none;
+}
+
+#fixed-network-container, #custom-network-container {
+    margin-top: 12px;
+    margin-bottom: 12px;
+}
+
+#customNetworkCheckbox {
+    cursor: pointer;
+}
+
+#customNetworkCheckboxLabel {
+    cursor: pointer;
 }
 
 </style>
@@ -27,21 +48,41 @@
     <h1 class='text-center'>Rootstock Bridge</h3>
     <h5 class='text-center'>Simple html page to interact with the Rootstock (RSK) Blockchain Bridge methods</h2>
     
-    <div id='network-selection-container'>
-        
-        <p>
-            <b>Network:</b>
-            <select id='selectNetwork' class='form-select form-select-sm' aria-label=''>
-                <option selected value='testnet'>Testnet</option>
-                <option value='mainnet'>Mainet</option>
-            </select>
-        </p>
+    <div id='network-selection-container' class="container">
 
-        <p>
-            <b>Url:</b> <span id='url'></span>
+        <div class="form-check" id="customNetworkCheckboxContainer">
+            <input class="form-check-input" type="checkbox" value="" id="customNetworkCheckbox" onchange="onUseCustomNetworkCheckboxChange(event)">
+            <label class="form-check-label" for="customNetworkCheckbox" id="customNetworkCheckboxLabel">
+              <b>Use Custom Network</b>
+            </label>
+        </div>
+
+        <div id="fixed-network-container" class="row justify-content-center align-items-center">
+            <div class="col-3">
+                <b>Network:</b>
+            </div>
+            <div class="col-9">
+                <select id='selectNetwork' class='form-select form-select-sm' aria-label=''>
+                    <option selected value='testnet'>Testnet</option>
+                    <option value='mainnet'>Mainnet</option>
+                </select>
+            </div>
+        </div>
+
+        <div id="custom-network-container" class="row justify-content-center align-items-center">
+            <div class="col-4">
+                <b>Custom Network Url:</b>
+            </div>
+            <div class="col-8">
+                <input id='customNetwork' onchange="onCustomNetworkUrlChange(event)" class='form-control form-control-sm' type='text' placeholder='Type/paste a url like http://127.0.0.1:1234 and then hit enter/return'>
+            </div>
+        </div>
+
+        <p id="selectedNetworkUrlContainer">
+            <b>Selected Network Url:</b> <span id='url'></span>
         </p>
-        <p>
-            <b>Bridge Address:</b> <span id='bridgeAddressElement'></span>
+        <p id="bridgeAddressContainer">
+            <b>Bridge Address:</b> <span id='bridgeAddressElement'></span> <span id="copyBridgeAddressContainer"></span>
         </p>
 
     </div>
@@ -115,20 +156,20 @@
 
     selectNetworkElement.addEventListener('change', (event) => {
         const network = event.target.value;
-        if(network === 'testnet') {
-            setupForSelectedNetwork(testnetRskUrl);
-        } else {
+        if(network === 'mainnet') {
             setupForSelectedNetwork(mainnetRskUrl);
+        } else {
+            setupForSelectedNetwork(testnetRskUrl);
         }
     });
 
-    const getCopyIconElement = () => {
+    const getCopyIconElement = (querySelectorOfElementToCopyValueFrom) => {
         const copyIconElement = document.createElement('i');
         copyIconElement.setAttribute('class', 'bi bi-clipboard');
         copyIconElement.setAttribute('style', 'font-size: 1.5rem; cursor: pointer;');
-        copyIconElement.title = 'Copy result to clipboard';
+        copyIconElement.title = 'Copy to clipboard';
         copyIconElement.onclick = (event) => {
-            const displayElement = event.target.parentNode.querySelector('.display');
+            const displayElement = event.target.parentNode.querySelector(querySelectorOfElementToCopyValueFrom);
             const text = displayElement.innerText;
             navigator.clipboard.writeText(text);
         };
@@ -181,7 +222,7 @@
 
         group.appendChild(getDisplayElement());
 
-        group.appendChild(getCopyIconElement());
+        group.appendChild(getCopyIconElement('.display'));
 
         return group;
     };
@@ -282,6 +323,32 @@
             container.appendChild(groups[i]);
         }
     };
+
+    const onUseCustomNetworkCheckboxChange = (event) => {
+        const checked = event.target.checked;
+        if(checked) {
+            document.getElementById('fixed-network-container').style.display = 'none';
+            document.getElementById('custom-network-container').style.display = 'flex';
+            setupForSelectedNetwork(customNetwork.value);
+        } else {
+            document.getElementById('fixed-network-container').style.display = 'flex';
+            document.getElementById('custom-network-container').style.display = 'none';
+            if(selectNetwork.value === 'mainnet') {
+                setupForSelectedNetwork(mainnetRskUrl );
+            } else {
+                setupForSelectedNetwork(testnetRskUrl);
+            }
+        }
+    };
+
+    const onCustomNetworkUrlChange = (event) => {
+        const customNetworkUrl = event.target.value;
+        setupForSelectedNetwork(customNetworkUrl);
+    };
+
+    bridgeAddressContainer.appendChild(getCopyIconElement('#bridgeAddressElement'));
+
+    selectedNetworkUrlContainer.appendChild(getCopyIconElement('#url'));
 
     const setup = async () => {
         bridgeAbi = await getBridgeAbi();

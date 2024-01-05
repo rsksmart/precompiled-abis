@@ -83,13 +83,13 @@ You can see the rsk bridge abi methods and events during a given fork by selecti
 
 # RootstockBridge HTML utility page
 
-Now we have a standalone HTML project to interact with the RSK bridge methods, called `RootstockBridge.html`.
+A standalone HTML project to interact with the RSK bridge methods is included under `/tools` folder, called `RootstockBridge.html`.
 
 Simply download it and open it in the browser.
 
 It will look like this:
 
-<img src="./RootstockBridge.png" alt="Rootstock bridge html utility project" />
+<img src="./tools/RootstockBridge.png" alt="Rootstock bridge html utility project" />
 
 Simply click on any of the buttons with the name of the Bridge method that you want to call.
 
