@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang='en'>
+<head>
+    <meta charset='UTF-8'>
+    <meta name='viewport' content='width=device-width, initial-scale=1.0'>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/web3/1.9.0/web3.min.js' integrity='sha512-mUvdtCaVKd9dby/UnYGKMLkP3eT7EA6QNFN5iSEjvMf8TFPq2oZFIemWL46iypQcL8xYNdx7wQIA1oYnTXuYhg==' crossorigin='anonymous' referrerpolicy='no-referrer'></script>
+    <link href='https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css' rel='stylesheet' integrity='sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN' crossorigin='anonymous'>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.11.2/font/bootstrap-icons.min.css" integrity="sha512-D1liES3uvDpPrgk7vXR/hR/sukGn7EtDWEyvpdLsyalQYq6v6YUsTUJmku7B4rcuQ21rf0UTksw2i/2Pdjbd3g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <title>Rootstock Bridge</title>
+</head>
+
+<style>
+
+.bridge-button {
+    width: 540px;
+}
+
+#network-selection-container {
+    width: 550px;
+    margin: 8px;
+}
+
+</style>
+
+<body>
+
+    <h1 class='text-center'>Rootstock Bridge</h3>
+    <h5 class='text-center'>Simple html page to interact with the Rootstock (RSK) Blockchain Bridge methods</h2>
+    
+    <div id='network-selection-container'>
+
+        <p>
+            <select id='selectNetwork' class='form-select form-select-sm' aria-label=''>
+                <option selected value='testnet'>Testnet</option>
+                <option value='mainnet'>Mainet</option>
+            </select>
+        </p>
+
+        <p>
+            <b>Url:</b> <span id='url'></span>
+        </p>
+        <p>
+            <b>Bridge Address:</b> <span id='bridgeAddressElement'></span>
+        </p>
+
+    </div>
+
+    <div>
+        <button id='clearButton' type='button' class='btn btn-outline-warning m-2'>Clear</button>
+    </div>
+
+    <div id='container'>
+
+    </div>
+
+<script>
+
+    const allowedMethods = [
+        'getBtcBlockchainBestChainHeight',
+        'getBtcBlockchainInitialBlockHeight',
+        'getBtcBlockchainBlockHashAtDepth',
+        'getBtcTxHashProcessedHeight',
+        'isBtcTxHashAlreadyProcessed',
+        'getFederationAddress',
+        'getFederationSize',
+        'getFederationThreshold',
+        'getFederatorPublicKeyOfType',
+        'getFederationCreationTime',
+        'getFederationCreationBlockNumber',
+        'getRetiringFederationAddress',
+        'getRetiringFederationSize',
+        'getRetiringFederationThreshold',
+        'getRetiringFederatorPublicKeyOfType',
+        'getRetiringFederationCreationTime',
+        'getRetiringFederationCreationBlockNumber',
+        'getPendingFederationHash',
+        'getPendingFederationSize',
+        'getPendingFederatorPublicKeyOfType',
+        'getFeePerKb',
+        'getMinimumLockTxValue',
+        'hasBtcBlockCoinbaseTransactionInformation',
+        'getActiveFederationCreationBlockHeight',
+        'getBtcBlockchainBestBlockHeader',
+        'getBtcBlockchainBlockHeaderByHash',
+        'getBtcBlockchainBlockHeaderByHeight',
+        'getBtcBlockchainParentBlockHeaderByHash',
+        'getEstimatedFeesForNextPegOutEvent',
+        'getNextPegoutCreationBlockNumber',
+        'getQueuedPegoutsCount',
+        'getActivePowpegRedeemScript',
+    ];
+
+    const bridgeAddress = '0x0000000000000000000000000000000001000006';
+    const testnetRskUrl = 'https://public-node.testnet.rsk.co/';
+    const mainnetRskUrl = 'https://public-node.rsk.co/';
+    let currentUrl = testnetRskUrl;
+    let bridge;
+    let web3;
+    let bridgeAbi;
+    url.innerText = testnetRskUrl;
+    bridgeAddressElement.innerText = bridgeAddress;
+
+    const selectNetworkElement = document.getElementById('selectNetwork');
+
+    const setupForSelectedNetwork = (networkUrl) => {
+        url.innerText = networkUrl;
+        currentUrl = networkUrl;
+        web3 = new Web3(networkUrl);
+        bridge = new web3.eth.Contract(bridgeAbi, bridgeAddress);
+        resetAllFields();
+        window.web3 = web3;
+        window.bridge = bridge;
+    };
+
+    selectNetworkElement.addEventListener('change', (event) => {
+        const network = event.target.value;
+        if(network === 'testnet') {
+            setupForSelectedNetwork(testnetRskUrl);
+        } else {
+            setupForSelectedNetwork(mainnetRskUrl);
+        }
+    });
+
+    const getCopyIconElement = () => {
+        const copyIconElement = document.createElement('i');
+        copyIconElement.setAttribute('class', 'bi bi-clipboard');
+        copyIconElement.setAttribute('style', 'font-size: 1.5rem; cursor: pointer;');
+        copyIconElement.title = 'Copy result to clipboard';
+        copyIconElement.onclick = (event) => {
+            const displayElement = event.target.parentNode.querySelector('.display');
+            const text = displayElement.innerText;
+            navigator.clipboard.writeText(text);
+        };
+        return copyIconElement;
+    };
+
+    const getDisplayElement = () => {
+        const displayElement = document.createElement('span');
+        displayElement.setAttribute('class', 'mx-2 display form-control');
+        displayElement.setAttribute('disabled', 'true');
+        return displayElement;     
+    };
+
+    const getActionButton = (name) => {
+        const button = document.createElement('button');
+        button.setAttribute('type', 'button');
+        button.setAttribute('class', 'btn btn-outline-primary mr-2 bridge-button');
+        button.textContent = name;
+        button.onclick = handleClick;
+        return button;
+    };
+
+    const getInputElements = (element) => {
+        const inputElements = [];
+        for(let i = 0; i < element.inputs.length; i++) {
+            const input = element.inputs[i];
+            const inputText = document.createElement('input');
+            inputText.setAttribute('type', 'text');
+            inputText.setAttribute('class', 'form-control mx-2');
+
+            let extraPlaceholder = '';
+            if(element.name.endsWith('FederatorPublicKeyOfType') && input.type.startsWith('string')) {
+                extraPlaceholder = '(rsk, btc or mst)'
+            }
+            
+            inputText.setAttribute('placeholder', `${input.type} ${input.name} ${extraPlaceholder}`);
+            inputElements.push(inputText);
+        }
+        return inputElements;
+    };
+
+    const mapToHtmlElementsGroup = (element) => {
+        const group = document.createElement('div');
+        group.setAttribute('class', 'd-flex justify-content-start m-2')
+        group.appendChild(getActionButton(element.name));
+
+        getInputElements(element).forEach(input => {
+            group.appendChild(input);
+        });
+
+        group.appendChild(getDisplayElement());
+
+        group.appendChild(getCopyIconElement());
+
+        return group;
+    };
+
+    const getBridgeAbi = async () => {
+        const url = 'https://raw.githubusercontent.com/rsksmart/precompiled-abis/master/abis/bridge.json';
+        const response = await fetch(url);
+        const bridgeAbi = await response.json();
+        return bridgeAbi;
+    };
+
+    const resetAllFields = () => {
+        const displayElements = document.getElementsByClassName('display');
+        for(let i = 0; i < displayElements.length; i++) {
+            displayElements[i].innerText = '';
+        }
+    };
+
+    const ensureAllInputsAreFilled = (inputs) => {
+
+        const inputsIndicesWithoutValues = [];
+
+        inputs.forEach((input, index) => {
+            if(input.value === '') {
+                inputsIndicesWithoutValues.push(index);
+            }
+        });
+
+        if(inputsIndicesWithoutValues.length > 0) {
+            const inputsWithoutValues = inputsIndicesWithoutValues.map(index => inputs[index].placeholder);
+            const inputsWithoutValuesString = inputsWithoutValues.join(', ');
+            alert(`Inputs (${inputsWithoutValuesString}) must be filled`);
+            throw new Error(`Inputs ${inputsWithoutValuesString} must be filled`);
+        }
+
+        inputs.forEach((input, index) => {
+            const inputType = input.placeholder.split(' ')[0];
+            if(inputType === 'int256' || inputType === 'uint256') {
+                const value = Number(input.value);
+                if(isNaN(value)) {
+                    alert(`Input ${input.placeholder} must be a number`);
+                    throw new Error(`Input ${input.placeholder} must be a number`);
+                }
+            } else if(inputType === 'bytes32') {
+                const value = input.value.startsWith('0x') ? input.value.substring(2) : input.value;
+                if(value.length !== 64) {
+                    alert(`Input ${input.placeholder} must be a 64 (or 66 with the 0x prefix) characters long hex string`);
+                    throw new Error(`Input ${input.placeholder} must be a 66 characters long hex string`);
+                }
+                if(input.value.startsWith('0x')) {
+                    console.warn(`The bridge only accepts hex strings without the 0x prefix. This tool will remove the 0x prefix for you, but remember to remove if manually calling the bridge methods.`);
+                }
+            }
+        });
+
+    };
+
+    const handleClick = async () => {
+        const button = event.target;
+        const inputs = Array.from(button.parentNode.querySelectorAll('input'));
+        const args = inputs.map(input => input.value);
+        ensureAllInputsAreFilled(inputs);
+        const functionName = button.innerText;
+
+        const displayElement = button.parentNode.querySelector('.display');
+
+        displayElement.innerText = '';
+
+        try {
+            const result = await bridge.methods[functionName](...args).call();
+            displayElement.innerText = result;
+        } catch(error) {
+            console.error(error);
+            alert(`There was an error calling '${functionName}': ${error.message}`);
+        }
+
+    };
+
+    clearButton.addEventListener('click', () => {
+        resetAllFields();
+    });
+
+    const setupBridgeInteractionElements = (bridgeAbi) => {
+        const groups = bridgeAbi
+            .filter(element => {
+                return element.type === 'function' && allowedMethods.includes(element.name);
+            })
+            .sort((method1, method2) => {
+                return method1.inputs.length - method2.inputs.length;
+            })
+            .map(element => {
+                return mapToHtmlElementsGroup(element);
+            });
+
+        const container = document.getElementById('container');
+
+        for(let i = 0; i < groups.length; i++) {
+            container.appendChild(groups[i]);
+        }
+    };
+
+    const setup = async () => {
+        bridgeAbi = await getBridgeAbi();
+        web3 = new Web3(testnetRskUrl);
+        bridge = new web3.eth.Contract(bridgeAbi, bridgeAddress);
+        setupBridgeInteractionElements(bridgeAbi);
+        window.web3 = web3;
+        window.bridge = bridge;
+    };
+
+    setup().then(() => {
+        console.log('Loaded.');
+    })
+    .catch(err => {
+        console.log(err);
+    });
+
+</script>
+
+</body>
+</html>
