@@ -81,3 +81,22 @@ Simply download it and open it in the browser.
 
 You can see the rsk bridge abi methods and events during a given fork by selecting using the ***Abis For Fork*** dropdown.
 
+# RootstockBridge HTML utility page
+
+Now we have a standalone HTML project to interact with the RSK bridge methods, called `RootstockBridge.html`.
+
+Simply download it and open it in the browser.
+
+It will look like this:
+
+<img src="./RootstockBridge.png" alt="Rootstock bridge html utility project" />
+
+Simply click on any of the buttons with the name of the Bridge method that you want to call.
+
+For the ones that accept input, simply add the inputs required and click the button.
+
+Change the network from Testnet to Mainnet using the **Network** select at the top of the page.
+
+Clear all the inputs and results clicking on the **Clear** button.
+
+Copy the result by clicking on the copy icon to the right of the result box.
