@@ -100,3 +100,5 @@ Change the network from Testnet to Mainnet using the **Network** select at the t
 Clear all the inputs and results clicking on the **Clear** button.
 
 Copy the result by clicking on the copy icon to the right of the result box.
+
+To use a custom network, click on `Use Custom Network` checkbox and you will have a text field to input a custom url. Hit enter/return and use the tool as usual.
