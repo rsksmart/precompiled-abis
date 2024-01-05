@@ -254,26 +254,37 @@
         if(inputsIndicesWithoutValues.length > 0) {
             const inputsWithoutValues = inputsIndicesWithoutValues.map(index => inputs[index].placeholder.trim());
             const inputsWithoutValuesString = "\"" + inputsWithoutValues.join('", "') + "\"";
-            alert(`Inputs ${inputsWithoutValuesString} must be filled`);
-            throw new Error(`Inputs ${inputsWithoutValuesString} must be filled`);
+            const message = `Inputs ${inputsWithoutValuesString} must be filled`;
+            alert(message);
+            throw new Error(message);
         }
 
         inputs.forEach((input, index) => {
-            const inputType = input.placeholder.split(' ')[0];
+            const placeholder = input.placeholder.trim();
+            const inputType = placeholder.split(' ')[0];
             if(inputType === 'int256' || inputType === 'uint256') {
                 const value = Number(input.value);
                 if(isNaN(value)) {
-                    alert(`Input ${input.placeholder} must be a number`);
-                    throw new Error(`Input ${input.placeholder} must be a number`);
+                    const message = `Input "${placeholder}" must be a number`;
+                    alert(message);
+                    throw new Error(message);
                 }
             } else if(inputType === 'bytes32') {
                 const value = input.value.startsWith('0x') ? input.value.substring(2) : input.value;
                 if(value.length !== 64) {
-                    alert(`Input ${input.placeholder} must be a 64 (or 66 with the 0x prefix) characters long hex string`);
-                    throw new Error(`Input ${input.placeholder} must be a 66 characters long hex string`);
+                    const message = `Input "${placeholder}" must be a 64 (or 66 with the 0x prefix) characters long hex string`;
+                    alert(message);
+                    throw new Error(message);
                 }
                 if(input.value.startsWith('0x')) {
                     console.warn(`The bridge only accepts hex strings without the 0x prefix. This tool will remove the 0x prefix for you, but remember to remove if manually calling the bridge methods.`);
+                }
+            } else if(placeholder === 'string type (rsk, btc or mst)') {
+                const value = input.value;
+                if(value !== 'rsk' && value !== 'btc' && value !== 'mst') {
+                    const message = `Input "${placeholder}" must be one of the following values (in lower case): rsk, btc or mst`;
+                    alert(message);
+                    throw new Error(message);
                 }
             }
         });
