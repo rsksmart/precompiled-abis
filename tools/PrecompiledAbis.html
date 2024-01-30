@@ -156,6 +156,20 @@
         'registerBtcTransaction',
         'registerBtcCoinbaseTransaction',
         'registerFastBridgeBtcTransaction',
+        'receiveHeaders',
+        'receiveHeader',
+        'getFederationAddress',
+        'getLockWhitelistSize',
+        'getLockWhitelistAddress',
+        'getLockWhitelistEntryByAddress',
+        'addLockWhitelistAddress',
+        'addOneOffLockWhitelistAddress',
+        'addUnlimitedLockWhitelistAddress',
+        'removeLockWhitelistAddress',
+        'setLockWhitelistDisableBlockDelay',
+        'getMinimumLockTxValue',
+        'getLockingCap',
+        'increaseLockingCap',
     ];
 
     const peginEvents = [
@@ -169,6 +183,8 @@
         'releaseBtc',
         'updateCollections',
         'addSignature',
+        'getFeePerKb',
+        'voteFeePerKbChange'
     ];
 
     const pegoutEvents = [
