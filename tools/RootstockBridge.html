@@ -4,8 +4,10 @@
     <meta charset='UTF-8'>
     <meta name='viewport' content='width=device-width, initial-scale=1.0'>
     <script src='https://cdnjs.cloudflare.com/ajax/libs/web3/1.9.0/web3.min.js' integrity='sha512-mUvdtCaVKd9dby/UnYGKMLkP3eT7EA6QNFN5iSEjvMf8TFPq2oZFIemWL46iypQcL8xYNdx7wQIA1oYnTXuYhg==' crossorigin='anonymous' referrerpolicy='no-referrer'></script>
-    <link href='https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css' rel='stylesheet' integrity='sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN' crossorigin='anonymous'>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/dompurify/3.0.8/purify.min.js" integrity="sha512-5g2Nj3mqLOgClHi20oat1COW7jWvf7SyqnvwWUsMDwhjHeqeTl0C+uzjucLweruQxHbhDwiPLXlm8HBO0011pA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <link href='https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css' rel='stylesheet' integrity='sha512-b2QcS5SsA8tZodcDtGRELiGv5SaKSk1vDHDaQRda0htPYWZ6046lr3kJ5bAAQdpV2mmA/4v0wQF9MyU6/pDIAg==' crossorigin='anonymous'>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.11.2/font/bootstrap-icons.min.css" integrity="sha512-D1liES3uvDpPrgk7vXR/hR/sukGn7EtDWEyvpdLsyalQYq6v6YUsTUJmku7B4rcuQ21rf0UTksw2i/2Pdjbd3g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    
     <title>Rootstock Bridge</title>
 </head>
 
@@ -141,6 +143,8 @@
     let bridgeAbi;
     url.innerText = testnetRskUrl;
     bridgeAddressElement.innerText = bridgeAddress;
+    const bytes32FormatExample = '0x0000...1111';
+    const txHashFormatExample = '1111...1111';
 
     const selectNetworkElement = document.getElementById('selectNetwork');
 
@@ -201,11 +205,16 @@
             inputText.setAttribute('class', 'form-control mx-2');
 
             let extraPlaceholder = '';
+
             if(element.name.endsWith('FederatorPublicKeyOfType') && input.type.startsWith('string')) {
-                extraPlaceholder = '(rsk, btc or mst)'
+                extraPlaceholder = ' (rsk, btc or mst)'
+            } else if(input.type === 'bytes32') {
+                extraPlaceholder = `: ${bytes32FormatExample} (66 chars long with 0x prefix)`;
+            } else if(input.type === 'string' && input.name === 'hash') {
+                extraPlaceholder = `: ${txHashFormatExample} (64 chars long, no 0x prefix)`;
             }
             
-            inputText.setAttribute('placeholder', `${input.type} ${input.name} ${extraPlaceholder}`);
+            inputText.setAttribute('placeholder', `${input.type} ${input.name}${extraPlaceholder}`);
             inputElements.push(inputText);
         }
         return inputElements;
@@ -229,7 +238,7 @@
 
     const getBridgeAbi = async () => {
         const url = 'https://raw.githubusercontent.com/rsksmart/precompiled-abis/master/abis/bridge.json';
-        const response = await fetch(url);
+        const response = await fetch(url, { mode: 'cors' });
         const bridgeAbi = await response.json();
         return bridgeAbi;
     };
@@ -259,25 +268,26 @@
             throw new Error(message);
         }
 
-        inputs.forEach((input, index) => {
+        const validateInput = (input, index) => {
             const placeholder = input.placeholder.trim();
-            const inputType = placeholder.split(' ')[0];
+            const inputType = placeholder.split(' ')[0].trim();
             if(inputType === 'int256' || inputType === 'uint256') {
                 const value = Number(input.value);
                 if(isNaN(value)) {
                     const message = `Input "${placeholder}" must be a number`;
                     alert(message);
                     throw new Error(message);
-                }
-            } else if(inputType === 'bytes32') {
-                const value = input.value.startsWith('0x') ? input.value.substring(2) : input.value;
-                if(value.length !== 64) {
-                    const message = `Input "${placeholder}" must be a 64 (or 66 with the 0x prefix) characters long hex string`;
+                } else if(value < 0) {
+                    const message = `Input "${placeholder}" must be a positive number`;
                     alert(message);
                     throw new Error(message);
                 }
-                if(input.value.startsWith('0x')) {
-                    console.warn(`The bridge only accepts hex strings without the 0x prefix. This tool will remove the 0x prefix for you, but remember to remove if manually calling the bridge methods.`);
+            } else if(inputType === 'bytes32') {
+                const has0xPrefix = input.value.startsWith('0x');
+                if(!has0xPrefix || input.value.length !== 66) {
+                    const message = `Input "${placeholder.substring(0, 17)}" must be a 66 characters long hex string with the 0x prefix like: ${bytes32FormatExample}`;
+                    alert(message);
+                    throw new Error(message);
                 }
             } else if(placeholder === 'string type (rsk, btc or mst)') {
                 const value = input.value;
@@ -286,16 +296,26 @@
                     alert(message);
                     throw new Error(message);
                 }
+            } else if(placeholder.startsWith('string hash')) {
+                const value = input.value;
+                const has0xPrefix = value.startsWith('0x');
+                if(has0xPrefix || value.length !== 64) {
+                    const message = `Input "${placeholder.substring(0, 11)}" must be a 64 characters long hex string without the 0x prefix like: ${txHashFormatExample}`;
+                    alert(message);
+                    throw new Error(message);
+                }
             }
-        });
+        };
+
+        inputs.forEach(validateInput);
 
     };
 
     const handleClick = async () => {
         const button = event.target;
         const inputs = Array.from(button.parentNode.querySelectorAll('input'));
-        const args = inputs.map(input => input.value);
         ensureAllInputsAreFilled(inputs);
+        const args = inputs.map(input => input.value);
         const functionName = button.innerText;
 
         const displayElement = button.parentNode.querySelector('.display');
