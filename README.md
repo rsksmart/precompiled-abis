@@ -68,3 +68,16 @@ If the version to be installed is not defined in the command line, it will insta
 | 5.0.0-HOP        | HOP-4.0.0        |
 | 5.0.0-FINGERROOT | FINGERROOT-5.0.0 |
 | 6.0.0-ARROWHEAD  | ARROWHEAD-6.0.0  |
+
+# Rootstock Bridge Methods Selectors and Events Topics page
+
+A standalone HTML project to get the RSK bridge methods selectors and events topics is included under `/tools` folder, called `PrecompiledAbis.html`.
+
+Simply download it and open it in the browser.
+
+<img src="./tools/precompiledAbisMethods.png" alt="Rootstock bridge abis methods" />
+
+<img src="./tools/precompiledAbisEvents.png" alt="Rootstock bridge abis events" />
+
+You can see the rsk bridge abi methods and events during a given fork by selecting using the ***Abis For Fork*** dropdown.
+
