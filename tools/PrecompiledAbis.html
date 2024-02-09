@@ -58,7 +58,8 @@
                 </div>
                 <div class="col-9">
                     <select id='abiForForkSelect' class='form-select form-select-sm' aria-label=''>
-                        <option selected value='fingerroot'>Fingerroot</option>
+                        <option selected value='arrowhead'>Arrowhead</option>
+                        <option value='fingerroot'>Fingerroot</option>
                         <option value='hop'>Hop</option>
                         <option value='iris'>Iris</option>
                         <option value='papyrus'>Papyrus</option>
@@ -109,6 +110,7 @@
     const irisAbisUrl = 'https://raw.githubusercontent.com/rsksmart/precompiled-abis/4.0.2-IRIS/abis/bridge.json';
     const hopAbisUrl = 'https://raw.githubusercontent.com/rsksmart/precompiled-abis/5.0.0-HOP/abis/bridge.json';
     const fingerrootAbisUrl = 'https://raw.githubusercontent.com/rsksmart/precompiled-abis/5.0.0-FINGERROOT/abis/bridge.json';
+    const arrowheadAbisUrl = 'https://raw.githubusercontent.com/rsksmart/precompiled-abis/6.0.0-ARROWHEAD/abis/bridge.json';
 
     const abisForkInfoMap = {
         orchid: {
@@ -140,6 +142,11 @@
             name: '5.0.0-FINGERROOT',
             key: 'fingerroot',
             url: fingerrootAbisUrl
+        },
+        arrowhead: {
+            name: '6.0.0-ARROWHEAD',
+            key: 'arrowhead',
+            url: arrowheadAbisUrl
         }
     };
 
@@ -149,7 +156,8 @@
         papyrus: null,
         iris: null,
         hop: null,
-        fingerroot: null
+        fingerroot: null,
+        arrowhead: null,
     };
 
     const peginMethods = [
@@ -199,7 +207,7 @@
     ];
 
     let selectedAbis = null;
-    let selectedAbiForkInfo = abisForkInfoMap.fingerroot;
+    let selectedAbiForkInfo = abisForkInfoMap.arrowhead;
 
     const testnetRskUrl = 'https://public-node.testnet.rsk.co/';
     let web3;

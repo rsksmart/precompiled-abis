@@ -64,8 +64,8 @@
             </div>
             <div class="col-9">
                 <select id='selectNetwork' class='form-select form-select-sm' aria-label=''>
-                    <option selected value='testnet'>Testnet</option>
-                    <option value='mainnet'>Mainnet</option>
+                    <option selected value='mainnet'>Mainnet</option>
+                    <option value='testnet'>Testnet</option>
                 </select>
             </div>
         </div>
@@ -136,11 +136,11 @@
     const bridgeAddress = '0x0000000000000000000000000000000001000006';
     const testnetRskUrl = 'https://public-node.testnet.rsk.co/';
     const mainnetRskUrl = 'https://public-node.rsk.co/';
-    let currentUrl = testnetRskUrl;
+    let currentUrl = mainnetRskUrl;
     let bridge;
     let web3;
     let bridgeAbi;
-    url.innerText = testnetRskUrl;
+    url.innerText = mainnetRskUrl;
     bridgeAddressElement.innerText = bridgeAddress;
     const bytes32FormatExample = '0x0000...1111';
     const txHashFormatExample = '1111...1111';
@@ -382,7 +382,7 @@
 
     const setup = async () => {
         bridgeAbi = await getBridgeAbi();
-        web3 = new Web3(testnetRskUrl);
+        web3 = new Web3(currentUrl);
         bridge = new web3.eth.Contract(bridgeAbi, bridgeAddress);
         setupBridgeInteractionElements(bridgeAbi);
         window.web3 = web3;
