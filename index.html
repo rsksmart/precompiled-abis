@@ -3,10 +3,56 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href='https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css' rel='stylesheet' integrity='sha512-b2QcS5SsA8tZodcDtGRELiGv5SaKSk1vDHDaQRda0htPYWZ6046lr3kJ5bAAQdpV2mmA/4v0wQF9MyU6/pDIAg==' crossorigin='anonymous'>
     <title>Index</title>
+    <style>
+        body {
+          padding-top: 40px;
+        }
+      </style>
 </head>
 <body>
-    <h1>Tools</h1>
-    <iframe src="tools/PrecompiledAbis.html" frameborder="0" width="100%" height="1000px"></iframe>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
+        <div class="container">
+          <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav">
+              <li class="nav-item">
+                <a class="nav-link" id="bridgeMethodsContainerLink" href="#bridgeMethodsContainer" data-bs-toggle="collapse" aria-expanded="false">Bridge Methods</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" id="bridgeABIsContainerLink" href="#bridgeABIsContainer" data-bs-toggle="collapse" aria-expanded="false">Bridge ABIs</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+      
+      <div class="mt-5">
+        <div class="collapse show" id="bridgeMethodsContainer">
+            <iframe src="tools/RootstockBridge.html" frameborder="0" width="100%" height="1000px"></iframe>
+        </div>
+        <div class="collapse p-2" id="bridgeABIsContainer">
+            <iframe src="tools/PrecompiledAbis.html" frameborder="0" width="100%" height="1000px"></iframe>
+        </div>
+      </div>
+
+<script>
+
+    bridgeMethodsContainerLink.addEventListener('click', event => {
+        bridgeABIsContainerLink.classList.remove('active');
+        bridgeMethodsContainerLink.classList.add('active');
+        bridgeMethodsContainer.classList.add('show');
+        bridgeABIsContainer.classList.remove('show');
+    });
+
+    bridgeABIsContainerLink.addEventListener('click', event => {
+        bridgeMethodsContainerLink.classList.remove('active');
+        bridgeABIsContainerLink.classList.add('active');
+        bridgeMethodsContainer.classList.remove('show');
+        bridgeABIsContainer.classList.add('show');
+    });
+
+</script>
+
 </body>
 </html>
