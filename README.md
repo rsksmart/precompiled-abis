@@ -73,7 +73,7 @@ If the version to be installed is not defined in the command line, it will insta
 
 A standalone HTML project to get the RSK bridge methods selectors and events topics is included under `/tools` folder, called `PrecompiledAbis.html`.
 
-Simply download it and open it in the browser. Of visit [https://rsksmart.github.io/precompiled-abis/](https://rsksmart.github.io/precompiled-abis/) to view the available html tools directly from this repo.
+Simply download it and open it in the browser, or visit [https://rsksmart.github.io/precompiled-abis/](https://rsksmart.github.io/precompiled-abis/) to view the available HTML tools directly from this repo.
 
 <img src="./tools/precompiledAbisMethods.png" alt="Rootstock bridge abis methods" />
 
