@@ -52,6 +52,14 @@
         bridgeABIsContainer.classList.add('show');
     });
 
+    const loadPageOnLocationHash = () => {
+        if (location.hash === '#bridgeABIsContainer') {
+            bridgeABIsContainerLink.click();
+        }
+    };
+
+    loadPageOnLocationHash();
+
 </script>
 
 </body>
