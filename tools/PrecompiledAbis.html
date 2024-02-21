@@ -42,6 +42,33 @@
     cursor: pointer;
 }
 
+.show-abi-button {
+    width: 100px;
+}
+
+.fixed-top-right {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      z-index: 9999;
+}
+
+.alert-sm {
+    padding: 0.5rem 1rem;
+    font-size: 80%;
+}
+
+.close {
+    background-color: transparent;
+    border: none;
+    font-size: 1.5rem;
+}
+
+.close:hover {
+    color: #000;
+    opacity: 0.75;
+}
+
 </style>
 
 <body>
@@ -58,7 +85,8 @@
                 </div>
                 <div class="col-9">
                     <select id='abiForForkSelect' class='form-select form-select-sm' aria-label=''>
-                        <option selected value='fingerroot'>Fingerroot</option>
+                        <option selected value='arrowhead'>Arrowhead</option>
+                        <option value='fingerroot'>Fingerroot</option>
                         <option value='hop'>Hop</option>
                         <option value='iris'>Iris</option>
                         <option value='papyrus'>Papyrus</option>
@@ -69,6 +97,10 @@
             </div>
         </div>
 
+        <div>
+            Selected abis GitHub url: <a href="" id="selectedAbisUrl" target="_blank"></a>
+        </div>
+
         <div id="methodsContainer">
             <h3>Methods</h3>
             <table id="methodsTable" class="table table-bordered">
@@ -76,8 +108,10 @@
                   <tr>
                     <th>Method Name</th>
                     <th>Method Selector</th>
-                    <th>Peg Type</th>
                     <th>Method Signature</th>
+                    <th>Output Type</th>
+                    <th>Abi</th>
+                    <th>Peg Type</th>
                   </tr>
                 </thead>
                 <tbody id="methodsTableBody"></tbody>
@@ -93,6 +127,7 @@
                     <th>Event Topic</th>
                     <th>Peg Type</th>
                     <th>Event Signature</th>
+                    <th>Abi</th>
                   </tr>
                 </thead>
                 <tbody id="eventsTableBody"></tbody>
@@ -100,6 +135,24 @@
         </div>
 
     </div>
+
+    <div class="modal fade" id="abiModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel">Abi</h5>
+              <button type="button" onclick="closeAbiModal(event)" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body" id="abiModalBody">
+            </div>
+            <div class="modal-footer">
+              <button type="button" onclick="copyAbiJson(event)" class="btn btn-secondary" data-dismiss="modal">Copy Abi</button>
+              <button type="button" onclick="closeAbiModal(event)" class="btn btn-primary">Close</button>
+            </div>
+          </div>
+        </div>
 
 <script>
 
@@ -109,6 +162,7 @@
     const irisAbisUrl = 'https://raw.githubusercontent.com/rsksmart/precompiled-abis/4.0.2-IRIS/abis/bridge.json';
     const hopAbisUrl = 'https://raw.githubusercontent.com/rsksmart/precompiled-abis/5.0.0-HOP/abis/bridge.json';
     const fingerrootAbisUrl = 'https://raw.githubusercontent.com/rsksmart/precompiled-abis/5.0.0-FINGERROOT/abis/bridge.json';
+    const arrowheadAbisUrl = 'https://raw.githubusercontent.com/rsksmart/precompiled-abis/6.0.0-ARROWHEAD/abis/bridge.json';
 
     const abisForkInfoMap = {
         orchid: {
@@ -140,6 +194,11 @@
             name: '5.0.0-FINGERROOT',
             key: 'fingerroot',
             url: fingerrootAbisUrl
+        },
+        arrowhead: {
+            name: '6.0.0-ARROWHEAD',
+            key: 'arrowhead',
+            url: arrowheadAbisUrl
         }
     };
 
@@ -149,7 +208,8 @@
         papyrus: null,
         iris: null,
         hop: null,
-        fingerroot: null
+        fingerroot: null,
+        arrowhead: null,
     };
 
     const peginMethods = [
@@ -199,10 +259,19 @@
     ];
 
     let selectedAbis = null;
-    let selectedAbiForkInfo = abisForkInfoMap.fingerroot;
+    let selectedAbiForkInfo = abisForkInfoMap.arrowhead;
+
+    selectedAbisUrl.href = selectedAbiForkInfo.url;
+    selectedAbisUrl.textContent = selectedAbiForkInfo.url;
 
     const testnetRskUrl = 'https://public-node.testnet.rsk.co/';
     let web3;
+
+    const defaultActionButtonOptions = {
+        name: 'Action Button',
+        onClick: () => {},
+        extraClasses: '',
+    };
 
     const getBridgeAbi = async (forkKey) => {
         const abiUrl = abisForkInfoMap[forkKey].url;
@@ -221,6 +290,8 @@
         mapSignaturesAndSelectors(bridgeAbi);
         selectedAbis = bridgeAbi;
         abiCache[forkKey] = bridgeAbi;
+        selectedAbisUrl.href = forkInfo.url;
+        selectedAbisUrl.textContent = forkInfo.url;
     };
 
     const getBridgeEventTopic = (eventAbi) => {
@@ -274,6 +345,18 @@
         return signature;
     };
 
+    const closeAbiModal = (event) => {
+        abiModal.style.display = 'none';
+        abiModal.classList.remove('show');
+        document.body.classList.remove('modal-open');
+        abiModalBody.innerHTML = '';
+    };
+
+    const copyAbiJson = event => {
+        navigator.clipboard.writeText(abiModalBody.innerText);
+        showAlert('Abi copied to clipboard', 'success');
+    };
+
     const getCopyIconElement = (querySelectorOfElementToCopyValueFrom) => {
         const copyIconElement = document.createElement('i');
         copyIconElement.setAttribute('class', 'bi bi-clipboard');
@@ -283,31 +366,53 @@
             const displayElement = event.target.parentNode.querySelector(querySelectorOfElementToCopyValueFrom);
             const text = displayElement.innerText;
             navigator.clipboard.writeText(text);
+            showAlert('Copied to clipboard', 'success');
         };
         return copyIconElement;
     };
 
-    const getDisplayElement = () => {
-        const displayElement = document.createElement('span');
-        displayElement.setAttribute('class', 'mx-2 display form-control');
-        displayElement.setAttribute('disabled', 'true');
-        return displayElement;     
+    const showAbisModal = (event) => {
+        abiModal.style.display = 'block';
+        abiModal.classList.add('show');
+        document.body.classList.add('modal-open');
     };
 
-    const getActionButton = (name) => {
+    const getActionButton = (options = defaultActionButtonOptions) => {
         const button = document.createElement('button');
         button.setAttribute('type', 'button');
-        button.setAttribute('class', 'btn btn-outline-primary mr-2 bridge-button');
-        button.textContent = name;
-        button.onclick = handleClick;
+        button.setAttribute('class', `btn btn-outline-primary mr-2 bridge-button ${options.extraClasses}`);
+        button.textContent = options.name;
+        button.onclick = options.onClick;
         return button;
     };
 
     const getDisplaySpan = (text) => {
         const span = document.createElement('span');
         span.setAttribute('class', 'mx-2 display');
-        span.innerText = text;
+        span.innerHTML = text;
         return span;
+    };
+
+    const getSpanForEventSignatureHighlightingIndexedParams = (abi) => {
+        const inputTypes = abi.inputs
+            .map(input => {
+                if(input.indexed) {
+                    return `<span title="indexed" style="background-color: #cdf7d6; ">${input.type}</span>`;
+                }
+                return input.type;
+            });
+        const signature = `${abi.name}(${inputTypes.join(',')})`;
+        return getDisplaySpan(signature);
+    };
+
+    const showAbiInModal = (abi) => {
+        const formattedJson = JSON.stringify(abi, null, 2);
+        const escapedJson = formattedJson.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+        const htmlFormattedJson = `<pre><code>${escapedJson}</code></pre>`;
+        abiModalBody.innerHTML = htmlFormattedJson;
+        abiModal.style.display = 'block';
+        abiModal.classList.add('show');
+        document.body.classList.add('modal-open');
     };
 
     const fillTable = (abis, tableId) => {
@@ -317,22 +422,38 @@
         abis.forEach(abi => {
 
             const row = tableBody.insertRow();
-            const cell1 = row.insertCell(0);
-            const cell2 = row.insertCell(1);
-            const cell3 = row.insertCell(2);
-            const cell4 = row.insertCell(3);
 
+            const nameCell = row.insertCell(0);
+            nameCell.appendChild(getDisplaySpan(abi.name));
+
+            const methodSelectorCell = row.insertCell(row.children.length);
+            methodSelectorCell.appendChild(getDisplaySpan(abi.selector));
             const classSelector = '.display';
+            methodSelectorCell.appendChild(getCopyIconElement(classSelector));
+            
+            const methodSignatureCell = row.insertCell(row.children.length);
 
-            cell1.appendChild(getDisplaySpan(abi.name));
+            if(abi.type === 'event') {
+                methodSignatureCell.appendChild(getSpanForEventSignatureHighlightingIndexedParams(abi));
+            } else {
+                methodSignatureCell.appendChild(getDisplaySpan(abi.signature));
+                const methodOutputsCell = row.insertCell(row.children.length);
+                const output = abi.outputs.length > 0 ? abi.outputs[0].type : '';
+                methodOutputsCell.appendChild(getDisplaySpan(output));
+            }
+            methodSignatureCell.appendChild(getCopyIconElement(classSelector));
 
-            cell2.appendChild(getDisplaySpan(abi.selector));
-            cell2.appendChild(getCopyIconElement(classSelector));
+            const showAbiButtonCell = row.insertCell(row.children.length);
+            const showAbiButtonOptions = {
+                name: 'Show Abi',
+                onClick: () => showAbiInModal(abi),
+                extraClasses: 'show-abi-button'
+            };
+            const showAbiButton = getActionButton(showAbiButtonOptions);
+            showAbiButtonCell.appendChild(showAbiButton);
 
-            cell3.appendChild(getDisplaySpan(abi.pegType));
-
-            cell4.appendChild(getDisplaySpan(abi.signature));
-            cell4.appendChild(getCopyIconElement(classSelector));
+            const pegTypeCell = row.insertCell(row.children.length);
+            pegTypeCell.appendChild(getDisplaySpan(abi.pegType));
 
         });
     };
@@ -379,6 +500,27 @@
         await selectAbi(selectedAbiForkInfo.key);
         fillEventsTable();
         fillMethodsTable();
+    };
+
+    const closeAlert = (event) => {
+        event.target.parentNode.parentNode.remove();
+    };
+
+    const showAlert = (message, alertType) => {
+        const alertElement = document.createElement('div');
+        alertElement.classList.add('alert', 'alert-dismissible', 'fade', 'show', 'fixed-top-right');
+        alertElement.classList.add(`alert-${alertType}`, 'alert-sm');
+        alertElement.setAttribute('role', 'alert');
+        alertElement.innerHTML = `
+            ${message}
+            <button onclick="closeAlert(event)" type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        `;
+        document.body.appendChild(alertElement);
+        setTimeout(() => {
+            alertElement.remove();
+        }, 5000);
     };
 
     setup().then(() => {
