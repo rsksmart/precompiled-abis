@@ -68,6 +68,7 @@ If the version to be installed is not defined in the command line, it will insta
 | 5.0.0-HOP        | HOP-4.0.0        |
 | 5.0.0-FINGERROOT | FINGERROOT-5.0.0 |
 | 6.0.0-ARROWHEAD  | ARROWHEAD-6.0.0  |
+| 7.0.0-LOVELL     | LOVELL-7.0.0     |
 
 # Rootstock Bridge Methods Selectors and Events Topics page
 
