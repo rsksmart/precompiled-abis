@@ -1242,5 +1242,22 @@
     ],
     "name": "pegout_confirmed",
     "type": "event"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": true,
+        "name": "btcTxHash",
+        "type": "bytes32"
+      },
+      {
+        "indexed": false,
+        "name": "utxoOutpointValues",
+        "type": "bytes"
+      }
+    ],
+    "name": "pegout_transaction_created",
+    "type": "event"
   }
 ]
