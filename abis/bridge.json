@@ -24,6 +24,18 @@
     ]
   },
   {
+    "name": "getStateForSvpClient",
+    "type": "function",
+    "constant": "true",
+    "inputs": [],
+    "outputs": [
+      {
+        "name": "",
+        "type": "bytes"
+      }
+    ]
+  },
+  {
     "name": "getStateForDebugging",
     "type": "function",
     "constant": "true",
