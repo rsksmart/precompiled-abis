@@ -8,7 +8,7 @@ describe('Bridge', () => {
     });
 
     it('has all the expected signatures', () => {
-        assert.equal(bridge.abi.length, 77);
+        assert.equal(bridge.abi.length, 83);
     });
 
     it('builds a valid contract', () => {

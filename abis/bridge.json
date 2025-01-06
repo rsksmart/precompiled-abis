@@ -521,6 +521,75 @@
     ]
   },
   {
+    "name": "getProposedFederationAddress",
+    "type": "function",
+    "constant": true,
+    "inputs": [],
+    "outputs": [
+      {
+        "name": "",
+        "type": "string"
+      }
+    ]
+  },
+  {
+    "name": "getProposedFederationSize",
+    "type": "function",
+    "constant": true,
+    "inputs": [],
+    "outputs": [
+      {
+        "name": "",
+        "type": "int256"
+      }
+    ]
+  },
+  {
+    "name": "getProposedFederatorPublicKeyOfType",
+    "type": "function",
+    "constant": true,
+    "inputs": [
+      {
+        "name": "index",
+        "type": "int256"
+      },
+      {
+        "name": "type",
+        "type": "string"
+      }
+    ],
+    "outputs": [
+      {
+        "name": "",
+        "type": "bytes"
+      }
+    ]
+  },
+  {
+    "name": "getProposedFederationCreationTime",
+    "type": "function",
+    "constant": true,
+    "inputs": [],
+    "outputs": [
+      {
+        "name": "",
+        "type": "int256"
+      }
+    ]
+  },
+  {
+    "name": "getProposedFederationCreationBlockNumber",
+    "type": "function",
+    "constant": true,
+    "inputs": [],
+    "outputs": [
+      {
+        "name": "",
+        "type": "int256"
+      }
+    ]
+  },
+  {
     "name": "getLockWhitelistSize",
     "type": "function",
     "constant": true,
@@ -1094,6 +1163,23 @@
     "name": "commit_federation",
     "type": "event"
   },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": false,
+        "name": "proposedFederationRedeemScript",
+        "type": "bytes"
+      },
+      {
+        "indexed": false,
+        "name": "blockNumber",
+        "type": "int256"
+      }
+    ],
+    "name": "commit_federation_failed",
+    "type": "event"
+  },  
   {
     "anonymous": false,
     "inputs": [
