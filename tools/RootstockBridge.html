@@ -136,6 +136,7 @@
         'getNextPegoutCreationBlockNumber',
         'getQueuedPegoutsCount',
         'getActivePowpegRedeemScript',
+        'getBtcTransactionConfirmations',
     ];
 
     const bridgeAddress = '0x0000000000000000000000000000000001000006';
@@ -149,6 +150,7 @@
     bridgeAddressElement.innerText = bridgeAddress;
     const bytes32FormatExample = '0x0000...1111';
     const txHashFormatExample = '1111...1111';
+    const bytes32ArrayFormatExample = '["0x0000...1111","0x0000...1111"]';
 
     const selectNetworkElement = document.getElementById('selectNetwork');
 
@@ -216,6 +218,8 @@
                 extraPlaceholder = `: ${bytes32FormatExample} (66 chars long with 0x prefix)`;
             } else if(input.type === 'string' && input.name === 'hash') {
                 extraPlaceholder = `: ${txHashFormatExample} (64 chars long, no 0x prefix)`;
+            } else if(input.type === 'bytes32[]') {
+                extraPlaceholder = `: ${bytes32ArrayFormatExample}`;
             }
             
             inputText.setAttribute('placeholder', `${input.type} ${input.name}${extraPlaceholder}`);
@@ -308,6 +312,21 @@
                     alert(message);
                     throw new Error(message);
                 }
+            } else if(inputType === 'bytes32[]') {
+                const isArray = input.value.trim().startsWith('[') && input.value.trim().endsWith(']');
+                if(!isArray) {
+                    const message = `Input "${placeholder.substring(0, 23)}" must be an array like: ${bytes32ArrayFormatExample}`;
+                    alert(message);
+                    throw new Error(message);
+                } else {
+                    try {
+                        const array = JSON.parse(input.value);
+                    } catch(error) {
+                        const message = `Input "${placeholder.substring(0, 23)}" must be an array like: ${bytes32ArrayFormatExample}`;
+                        alert(message);
+                        throw new Error(message);
+                    }
+                }
             }
         };
 
@@ -319,13 +338,12 @@
         const button = event.target;
         const inputs = Array.from(button.parentNode.querySelectorAll('input'));
         ensureAllInputsAreFilled(inputs);
-        const args = inputs.map(input => input.value);
+        const args = inputs.map(input => input.value?.startsWith('[') ? JSON.parse(input.value) : input.value);
         const functionName = button.innerText;
 
         const displayElement = button.parentNode.querySelector('.display');
 
         displayElement.innerText = '';
-
         try {
             const result = await bridge.methods[functionName](...args).call();
             displayElement.innerText = result;
