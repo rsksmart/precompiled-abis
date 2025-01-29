@@ -6,7 +6,7 @@
 
 # Welcome to the precompiled ABIs from Rootstock
 
-Here you will find the ABIs for the existing precompiled contracts in Rootstock. You will also get their addresses and a builder to use it with [web3js](https://www.npmjs.com/package/web3).
+Here you will find the ABIs for the existing precompiled contracts in Rootstock. You will also get their addresses.
 
 # Version
 
@@ -24,32 +24,75 @@ For the installation of these package you must execute in a terminal window:
 npm install @rsksmart/rsk-precompiled-abis@<version>
 ```
 
-As an example to define and use it:
+## With Ethersjs
 
-1) Include the Web3 package.
+```js
 
-```javascript
+const ethers = require('ethers');
+const precompiledAbi = require('@rsksmart/rsk-precompiled-abis');
+
+const BRIDGE_ADDRESS = '0x0000000000000000000000000000000001000006';
+const networkUrl = 'https://public-node.testnet.rsk.co/';
+const bridgeAbi = precompiledAbi.bridge.abi;
+const provider = new ethers.JsonRpcProvider(networkUrl);
+const bridge = new ethers.Contract(BRIDGE_ADDRESS, bridgeAbi, provider);
+
+bridge.getBtcBlockchainBestChainHeight().then(console.log);
+
+```
+
+That would print something like: `3633485n`.
+
+## With Viem
+
+```js
+const { createPublicClient, http } = require("viem");
+const { mainnet } = require("viem/chains");
+const precompiledAbi = require('@rsksmart/rsk-precompiled-abis');
+
+const BRIDGE_ADDRESS = '0x0000000000000000000000000000000001000006';
+const networkUrl = 'https://public-node.testnet.rsk.co/';
+const bridgeAbi = precompiledAbi.bridge.abi;
+
+const client = createPublicClient({
+  chain: mainnet,
+  transport: http(networkUrl),
+});
+
+const getBlockchainHeight = async () => {
+  try {
+    const height = await client.readContract({
+      address: BRIDGE_ADDRESS,
+      abi: bridgeAbi,
+      functionName: "getBtcBlockchainBestChainHeight",
+    });
+    console.log("btcBlockchainBestChainHeight:", height);
+  } catch (error) {
+    console.error("Error getting btcBlockchainBestChainHeight:", error);
+  }
+};
+
+getBlockchainHeight();
+
+```
+
+That would print something like: `3633485n`.
+
+## With Web3
+
+```js
+
 const Web3 = require('web3');
-```
+const precompiledAbi = require('@rsksmart/rsk-precompiled-abis');
+const BRIDGE_ADDRESS = '0x0000000000000000000000000000000001000006';
+const networkUrl = 'https://public-node.testnet.rsk.co/';
+const bridgeAbi = precompiledAbi.bridge.abi;
 
-2) Include the `rsk-precompiled-abis` package.
+const web3 = new Web3(networkUrl);
+const bridge = new web3.eth.Contract(bridgeAbi, BRIDGE_ADDRESS);
 
-```javascript
-const precompiled = require('@rsksmart/rsk-precompiled-abis');
-```
+bridge.methods.getBtcBlockchainBestChainHeight().call().then(console.log)
 
-3) Create an instance of the contract using package build method and Web3 as a parameter.
-
-(i.e.: using Bridge)
-
-```shell
-var bridge = precompiled.bridge.build(new Web3('http://localhost:4444'));
-```
-
-4) Use a contract's method. For example, here we call `getFederationAddress`, and displays its result in the console.
-
-```shell
-bridge.methods.getFederationAddress().call().then(console.log);
 ```
 
 # Important note
