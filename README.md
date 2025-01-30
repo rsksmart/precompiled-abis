@@ -29,11 +29,11 @@ npm install @rsksmart/rsk-precompiled-abis@<version>
 ```js
 
 const ethers = require('ethers');
-const precompiledAbi = require('@rsksmart/rsk-precompiled-abis');
+const precompiledAbis = require('@rsksmart/rsk-precompiled-abis');
 const networkUrl = 'https://public-node.rsk.co/';
 
 const provider = new ethers.JsonRpcProvider(networkUrl);
-const bridge = new ethers.Contract(precompiledAbi.bridge.address, precompiledAbi.bridge.abi, provider);
+const bridge = new ethers.Contract(precompiledAbis.bridge.address, precompiledAbis.bridge.abi, provider);
 
 bridge.getBtcBlockchainBestChainHeight().then(console.log);
 
@@ -46,7 +46,7 @@ That would print something like: `881524n`.
 ```js
 const { createPublicClient, http } = require("viem");
 const { mainnet } = require("viem/chains");
-const precompiledAbi = require('@rsksmart/rsk-precompiled-abis');
+const precompiledAbis = require('@rsksmart/rsk-precompiled-abis');
 const networkUrl = 'https://public-node.rsk.co/';
 
 const client = createPublicClient({
@@ -57,8 +57,8 @@ const client = createPublicClient({
 const getBlockchainHeight = async () => {
   try {
     const height = await client.readContract({
-      address: precompiledAbi.bridge.address,
-      abi: precompiledAbi.bridge.abi,
+      address: precompiledAbis.bridge.address,
+      abi: precompiledAbis.bridge.abi,
       functionName: "getBtcBlockchainBestChainHeight",
     });
     console.log("btcBlockchainBestChainHeight:", height);
