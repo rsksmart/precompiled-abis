@@ -24,24 +24,22 @@ For the installation of these package you must execute in a terminal window:
 npm install @rsksmart/rsk-precompiled-abis@<version>
 ```
 
-## With Ethersjs
+## With Ethers
 
 ```js
 
 const ethers = require('ethers');
 const precompiledAbi = require('@rsksmart/rsk-precompiled-abis');
+const networkUrl = 'https://public-node.rsk.co/';
 
-const BRIDGE_ADDRESS = '0x0000000000000000000000000000000001000006';
-const networkUrl = 'https://public-node.testnet.rsk.co/';
-const bridgeAbi = precompiledAbi.bridge.abi;
 const provider = new ethers.JsonRpcProvider(networkUrl);
-const bridge = new ethers.Contract(BRIDGE_ADDRESS, bridgeAbi, provider);
+const bridge = new ethers.Contract(precompiledAbi.bridge.address, precompiledAbi.bridge.abi, provider);
 
 bridge.getBtcBlockchainBestChainHeight().then(console.log);
 
 ```
 
-That would print something like: `3633485n`.
+That would print something like: `881524n`.
 
 ## With Viem
 
@@ -49,10 +47,7 @@ That would print something like: `3633485n`.
 const { createPublicClient, http } = require("viem");
 const { mainnet } = require("viem/chains");
 const precompiledAbi = require('@rsksmart/rsk-precompiled-abis');
-
-const BRIDGE_ADDRESS = '0x0000000000000000000000000000000001000006';
-const networkUrl = 'https://public-node.testnet.rsk.co/';
-const bridgeAbi = precompiledAbi.bridge.abi;
+const networkUrl = 'https://public-node.rsk.co/';
 
 const client = createPublicClient({
   chain: mainnet,
@@ -62,8 +57,8 @@ const client = createPublicClient({
 const getBlockchainHeight = async () => {
   try {
     const height = await client.readContract({
-      address: BRIDGE_ADDRESS,
-      abi: bridgeAbi,
+      address: precompiledAbi.bridge.address,
+      abi: precompiledAbi.bridge.abi,
       functionName: "getBtcBlockchainBestChainHeight",
     });
     console.log("btcBlockchainBestChainHeight:", height);
@@ -76,24 +71,7 @@ getBlockchainHeight();
 
 ```
 
-That would print something like: `3633485n`.
-
-## With Web3
-
-```js
-
-const Web3 = require('web3');
-const precompiledAbi = require('@rsksmart/rsk-precompiled-abis');
-const BRIDGE_ADDRESS = '0x0000000000000000000000000000000001000006';
-const networkUrl = 'https://public-node.testnet.rsk.co/';
-const bridgeAbi = precompiledAbi.bridge.abi;
-
-const web3 = new Web3(networkUrl);
-const bridge = new web3.eth.Contract(bridgeAbi, BRIDGE_ADDRESS);
-
-bridge.methods.getBtcBlockchainBestChainHeight().call().then(console.log)
-
-```
+That would print something like: `881524n`.
 
 # Important note
 

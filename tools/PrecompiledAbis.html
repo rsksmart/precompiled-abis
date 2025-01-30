@@ -85,8 +85,8 @@
                 </div>
                 <div class="col-9">
                     <select id='abiForForkSelect' class='form-select form-select-sm' aria-label=''>
-                        <option value='lovell'>Lovell</option>
-                        <option selected value='arrowhead'>Arrowhead</option>
+                        <option selected value='lovell'>Lovell</option>
+                        <option value='arrowhead'>Arrowhead</option>
                         <option value='fingerroot'>Fingerroot</option>
                         <option value='hop'>Hop</option>
                         <option value='iris'>Iris</option>
@@ -267,12 +267,12 @@
     ];
 
     let selectedAbis = null;
-    let selectedAbiForkInfo = abisForkInfoMap.arrowhead;
+    let selectedAbiForkInfo = abisForkInfoMap.lovell;
 
     selectedAbisUrl.href = selectedAbiForkInfo.url;
     selectedAbisUrl.textContent = selectedAbiForkInfo.url;
 
-    const testnetRskUrl = 'https://public-node.testnet.rsk.co/';
+    const testnetRskUrl = 'https://public-node.rsk.co/';
 
     const defaultActionButtonOptions = {
         name: 'Action Button',
@@ -291,7 +291,7 @@
 
         if (!response.ok) {
             if (response.status === 404) {
-                throw new Error(`ABI file not found at ${abiUrl} (404)`);
+                throw new Error(`ABI file for ${forkKey} not found. Consider selecting a different one. Check console for more info.`);
             } else {
                 throw new Error(`Failed to fetch ABI. HTTP Status: ${response.status}`);
             }
@@ -322,7 +322,6 @@
 
     const getBridgeEventTopic = (eventAbi) => {
         return ethers.keccak256(ethers.toUtf8Bytes(eventAbi.signature));
-        return '';
     };
 
     const getBridgeMethodSelector = (methodAbi) => {
