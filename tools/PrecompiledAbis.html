@@ -3,7 +3,7 @@
 <head>
     <meta charset='UTF-8'>
     <meta name='viewport' content='width=device-width, initial-scale=1.0'>
-    <script src='https://cdnjs.cloudflare.com/ajax/libs/web3/1.9.0/web3.min.js' integrity='sha512-mUvdtCaVKd9dby/UnYGKMLkP3eT7EA6QNFN5iSEjvMf8TFPq2oZFIemWL46iypQcL8xYNdx7wQIA1oYnTXuYhg==' crossorigin='anonymous' referrerpolicy='no-referrer'></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/ethers/6.13.5/ethers.umd.min.js" integrity="sha512-dj/EbePKIJrkhHMePgJ6ACP0v5whCZi+A8ot7WP+L0a3sPafqqWRiRhBBlGprs5hs5JjOYuTDlOic+qKc/s3mw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <link href='https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css' rel='stylesheet' integrity='sha512-b2QcS5SsA8tZodcDtGRELiGv5SaKSk1vDHDaQRda0htPYWZ6046lr3kJ5bAAQdpV2mmA/4v0wQF9MyU6/pDIAg==' crossorigin='anonymous'>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.11.2/font/bootstrap-icons.min.css" integrity="sha512-D1liES3uvDpPrgk7vXR/hR/sukGn7EtDWEyvpdLsyalQYq6v6YUsTUJmku7B4rcuQ21rf0UTksw2i/2Pdjbd3g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
@@ -272,9 +272,6 @@
     selectedAbisUrl.href = selectedAbiForkInfo.url;
     selectedAbisUrl.textContent = selectedAbiForkInfo.url;
 
-    const testnetRskUrl = 'https://public-node.testnet.rsk.co/';
-    let web3;
-
     const defaultActionButtonOptions = {
         name: 'Action Button',
         onClick: () => {},
@@ -282,11 +279,30 @@
     };
 
     const getBridgeAbi = async (forkKey) => {
-        const abiUrl = abisForkInfoMap[forkKey].url;
+    try {
+        const abiUrl = abisForkInfoMap[forkKey]?.url;
+        if (!abiUrl) {
+            throw new Error(`Invalid forkKey: ${forkKey}`);
+        }
+
         const response = await fetch(abiUrl);
+
+        if (!response.ok) {
+            if (response.status === 404) {
+                throw new Error(`ABI file for ${forkKey} not found. Consider selecting a different one. Check console for more info.`);
+            } else {
+                throw new Error(`Failed to fetch ABI. HTTP Status: ${response.status}`);
+            }
+        }
+
         const bridgeAbi = await response.json();
         return bridgeAbi;
-    };
+    } catch (error) {
+        const message = `Error fetching ABI: ${error.message}`;
+        alert(message);
+        console.error(message, error);
+    }
+};
 
     const selectAbi = async (forkKey) => {
         const forkInfo = abisForkInfoMap[forkKey];
@@ -294,20 +310,20 @@
             selectedAbis = abiCache[forkKey];
             return;
         }
+        selectedAbisUrl.href = forkInfo.url;
+        selectedAbisUrl.textContent = forkInfo.url;
         const bridgeAbi = await getBridgeAbi(forkKey);
         mapSignaturesAndSelectors(bridgeAbi);
         selectedAbis = bridgeAbi;
         abiCache[forkKey] = bridgeAbi;
-        selectedAbisUrl.href = forkInfo.url;
-        selectedAbisUrl.textContent = forkInfo.url;
     };
 
     const getBridgeEventTopic = (eventAbi) => {
-        return web3.eth.abi.encodeEventSignature(eventAbi);
+        return ethers.keccak256(ethers.toUtf8Bytes(eventAbi.signature));
     };
 
     const getBridgeMethodSelector = (methodAbi) => {
-        return web3.eth.abi.encodeFunctionSignature(methodAbi);
+        return ethers.keccak256(ethers.toUtf8Bytes(methodAbi.signature)).substring(0, 10);
     };
 
     const getPegType = abi => {
@@ -504,7 +520,6 @@
     abiForForkSelect.addEventListener('change', onAbiForForkChange);
 
     const setup = async () => {
-        web3 = new Web3(testnetRskUrl);
         await selectAbi(selectedAbiForkInfo.key);
         fillEventsTable();
         fillMethodsTable();

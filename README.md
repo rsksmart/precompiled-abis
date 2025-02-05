@@ -6,7 +6,7 @@
 
 # Welcome to the precompiled ABIs from Rootstock
 
-Here you will find the ABIs for the existing precompiled contracts in Rootstock. You will also get their addresses and a builder to use it with [web3js](https://www.npmjs.com/package/web3).
+Here you will find the ABIs for the existing precompiled contracts in Rootstock. You will also get their addresses.
 
 # Version
 
@@ -24,33 +24,54 @@ For the installation of these package you must execute in a terminal window:
 npm install @rsksmart/rsk-precompiled-abis@<version>
 ```
 
-As an example to define and use it:
+## With Ethers
 
-1) Include the Web3 package.
+```js
 
-```javascript
-const Web3 = require('web3');
+const ethers = require('ethers');
+const precompiledAbis = require('@rsksmart/rsk-precompiled-abis');
+const networkUrl = 'https://public-node.rsk.co/';
+
+const provider = new ethers.JsonRpcProvider(networkUrl);
+const bridge = new ethers.Contract(precompiledAbis.bridge.address, precompiledAbis.bridge.abi, provider);
+
+bridge.getBtcBlockchainBestChainHeight().then(console.log);
+
 ```
 
-2) Include the `rsk-precompiled-abis` package.
+That would print something like: `881524n`.
 
-```javascript
-const precompiled = require('@rsksmart/rsk-precompiled-abis');
+## With Viem
+
+```js
+const { createPublicClient, http } = require("viem");
+const { mainnet } = require("viem/chains");
+const precompiledAbis = require('@rsksmart/rsk-precompiled-abis');
+const networkUrl = 'https://public-node.rsk.co/';
+
+const client = createPublicClient({
+  chain: mainnet,
+  transport: http(networkUrl),
+});
+
+const getBlockchainHeight = async () => {
+  try {
+    const height = await client.readContract({
+      address: precompiledAbis.bridge.address,
+      abi: precompiledAbis.bridge.abi,
+      functionName: "getBtcBlockchainBestChainHeight",
+    });
+    console.log("btcBlockchainBestChainHeight:", height);
+  } catch (error) {
+    console.error("Error getting btcBlockchainBestChainHeight:", error);
+  }
+};
+
+getBlockchainHeight();
+
 ```
 
-3) Create an instance of the contract using package build method and Web3 as a parameter.
-
-(i.e.: using Bridge)
-
-```shell
-var bridge = precompiled.bridge.build(new Web3('http://localhost:4444'));
-```
-
-4) Use a contract's method. For example, here we call `getFederationAddress`, and displays its result in the console.
-
-```shell
-bridge.methods.getFederationAddress().call().then(console.log);
-```
+That would print something like: `881524n`.
 
 # Important note
 

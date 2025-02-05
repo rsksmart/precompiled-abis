@@ -1,6 +1,8 @@
 const assert = require('assert');
-const { Web3 } = require('web3');
+const ethers = require('ethers');
 const bridge = require('../bridge');
+
+const networkUrl = 'https://public-node.rsk.co/';
 
 describe('Bridge', () => {
     it('has the expected address', () => {
@@ -11,9 +13,12 @@ describe('Bridge', () => {
         assert.equal(bridge.abi.length, 83);
     });
 
-    it('builds a valid contract', () => {
-        const client = new Web3();
-        const bridgeInstance = bridge.build(client);
-        assert.equal(bridgeInstance instanceof client.eth.Contract, true);
+    it('should build the bridge contract with Ethers', () => {
+
+        const provider = new ethers.JsonRpcProvider(networkUrl);
+        const bridgeContract = new ethers.Contract(bridge.address, bridge.abi, provider);
+        assert.equal(bridgeContract instanceof ethers.Contract, true);
+
     });
+
 });

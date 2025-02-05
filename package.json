@@ -13,8 +13,8 @@
   },
   "license": "ISC",
   "devDependencies": {
-    "mocha": "^11.0.1",
-    "web3": "^4.0.1"
+    "ethers": "^6.13.5",
+    "mocha": "^11.0.1"
   },
   "types": "./types/index.d.ts"
 }
