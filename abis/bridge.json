@@ -2,7 +2,7 @@
   {
     "name": "getBtcBlockchainBestChainHeight",
     "type": "function",
-    "constant": true,
+    "stateMutability": "view",
     "inputs": [],
     "outputs": [
       {
@@ -14,7 +14,7 @@
   {
     "name": "getStateForBtcReleaseClient",
     "type": "function",
-    "constant": "true",
+    "stateMutability": "view",
     "inputs": [],
     "outputs": [
       {
@@ -26,7 +26,7 @@
   {
     "name": "getStateForSvpClient",
     "type": "function",
-    "constant": "true",
+    "stateMutability": "view",
     "inputs": [],
     "outputs": [
       {
@@ -38,7 +38,7 @@
   {
     "name": "getStateForDebugging",
     "type": "function",
-    "constant": "true",
+    "stateMutability": "view",
     "inputs": [],
     "outputs": [
       {
@@ -50,7 +50,7 @@
   {
     "name": "getBtcBlockchainInitialBlockHeight",
     "type": "function",
-    "constant": true,
+    "stateMutability": "view",
     "inputs": [],
     "outputs": [
       {
@@ -62,7 +62,7 @@
   {
     "name": "getBtcBlockchainBlockHashAtDepth",
     "type": "function",
-    "constant": true,
+    "stateMutability": "view",
     "inputs": [
       {
         "name": "depth",
@@ -79,7 +79,7 @@
   {
     "name": "getBtcTxHashProcessedHeight",
     "type": "function",
-    "constant": true,
+    "stateMutability": "view",
     "inputs": [
       {
         "name": "hash",
@@ -96,7 +96,7 @@
   {
     "name": "isBtcTxHashAlreadyProcessed",
     "type": "function",
-    "constant": true,
+    "stateMutability": "view",
     "inputs": [
       {
         "name": "hash",
@@ -113,7 +113,7 @@
   {
     "name": "getFederationAddress",
     "type": "function",
-    "constant": true,
+    "stateMutability": "view",
     "inputs": [],
     "outputs": [
       {
@@ -125,7 +125,7 @@
   {
     "name": "registerBtcTransaction",
     "type": "function",
-    "constant": true,
+    "stateMutability": "nonpayable",
     "inputs": [
       {
         "name": "tx",
@@ -145,7 +145,7 @@
   {
     "name": "addSignature",
     "type": "function",
-    "constant": true,
+    "stateMutability": "nonpayable",
     "inputs": [
       {
         "name": "pubkey",
@@ -165,7 +165,7 @@
   {
     "name": "receiveHeaders",
     "type": "function",
-    "constant": true,
+    "stateMutability": "nonpayable",
     "inputs": [
       {
         "name": "blocks",
@@ -177,7 +177,7 @@
   {
     "name": "receiveHeader",
     "type": "function",
-    "constant": true,
+    "stateMutability": "nonpayable",
     "inputs": [
       {
         "name": "block",
@@ -194,7 +194,7 @@
   {
     "name": "getFederationSize",
     "type": "function",
-    "constant": true,
+    "stateMutability": "view",
     "inputs": [],
     "outputs": [
       {
@@ -206,7 +206,7 @@
   {
     "name": "getFederationThreshold",
     "type": "function",
-    "constant": true,
+    "stateMutability": "view",
     "inputs": [],
     "outputs": [
       {
@@ -218,7 +218,7 @@
   {
     "name": "getFederatorPublicKey",
     "type": "function",
-    "constant": true,
+    "stateMutability": "view",
     "inputs": [
       {
         "name": "index",
@@ -235,7 +235,7 @@
   {
     "name": "getFederatorPublicKeyOfType",
     "type": "function",
-    "constant": true,
+    "stateMutability": "view",
     "inputs": [
       {
         "name": "index",
@@ -256,7 +256,7 @@
   {
     "name": "getFederationCreationTime",
     "type": "function",
-    "constant": true,
+    "stateMutability": "view",
     "inputs": [],
     "outputs": [
       {
@@ -268,7 +268,7 @@
   {
     "name": "getFederationCreationBlockNumber",
     "type": "function",
-    "constant": true,
+    "stateMutability": "view",
     "inputs": [],
     "outputs": [
       {
@@ -280,7 +280,7 @@
   {
     "name": "getRetiringFederationAddress",
     "type": "function",
-    "constant": true,
+    "stateMutability": "view",
     "inputs": [],
     "outputs": [
       {
@@ -292,7 +292,7 @@
   {
     "name": "getRetiringFederationSize",
     "type": "function",
-    "constant": true,
+    "stateMutability": "view",
     "inputs": [],
     "outputs": [
       {
@@ -304,7 +304,7 @@
   {
     "name": "getRetiringFederationThreshold",
     "type": "function",
-    "constant": true,
+    "stateMutability": "view",
     "inputs": [],
     "outputs": [
       {
@@ -316,7 +316,7 @@
   {
     "name": "getRetiringFederatorPublicKey",
     "type": "function",
-    "constant": true,
+    "stateMutability": "view",
     "inputs": [
       {
         "name": "index",
@@ -333,7 +333,7 @@
   {
     "name": "getRetiringFederatorPublicKeyOfType",
     "type": "function",
-    "constant": true,
+    "stateMutability": "view",
     "inputs": [
       {
         "name": "index",
@@ -354,7 +354,7 @@
   {
     "name": "getRetiringFederationCreationTime",
     "type": "function",
-    "constant": true,
+    "stateMutability": "view",
     "inputs": [],
     "outputs": [
       {
@@ -366,7 +366,7 @@
   {
     "name": "getRetiringFederationCreationBlockNumber",
     "type": "function",
-    "constant": true,
+    "stateMutability": "view",
     "inputs": [],
     "outputs": [
       {
@@ -378,7 +378,7 @@
   {
     "name": "createFederation",
     "type": "function",
-    "constant": false,
+    "stateMutability": "nonpayable",
     "inputs": [],
     "outputs": [
       {
@@ -390,7 +390,7 @@
   {
     "name": "addFederatorPublicKey",
     "type": "function",
-    "constant": false,
+    "stateMutability": "nonpayable",
     "inputs": [
       {
         "name": "key",
@@ -407,7 +407,7 @@
   {
     "name": "addFederatorPublicKeyMultikey",
     "type": "function",
-    "constant": false,
+    "stateMutability": "nonpayable",
     "inputs": [
       {
         "name": "btcKey",
@@ -432,7 +432,7 @@
   {
     "name": "commitFederation",
     "type": "function",
-    "constant": false,
+    "stateMutability": "nonpayable",
     "inputs": [
       {
         "name": "hash",
@@ -449,7 +449,7 @@
   {
     "name": "rollbackFederation",
     "type": "function",
-    "constant": false,
+    "stateMutability": "nonpayable",
     "inputs": [],
     "outputs": [
       {
@@ -461,7 +461,7 @@
   {
     "name": "getPendingFederationHash",
     "type": "function",
-    "constant": true,
+    "stateMutability": "view",
     "inputs": [],
     "outputs": [
       {
@@ -473,7 +473,7 @@
   {
     "name": "getPendingFederationSize",
     "type": "function",
-    "constant": true,
+    "stateMutability": "view",
     "inputs": [],
     "outputs": [
       {
@@ -485,7 +485,7 @@
   {
     "name": "getPendingFederatorPublicKey",
     "type": "function",
-    "constant": true,
+    "stateMutability": "view",
     "inputs": [
       {
         "name": "index",
@@ -502,7 +502,7 @@
   {
     "name": "getPendingFederatorPublicKeyOfType",
     "type": "function",
-    "constant": true,
+    "stateMutability": "view",
     "inputs": [
       {
         "name": "index",
@@ -523,7 +523,7 @@
   {
     "name": "getProposedFederationAddress",
     "type": "function",
-    "constant": true,
+    "stateMutability": "view",
     "inputs": [],
     "outputs": [
       {
@@ -535,7 +535,7 @@
   {
     "name": "getProposedFederationSize",
     "type": "function",
-    "constant": true,
+    "stateMutability": "view",
     "inputs": [],
     "outputs": [
       {
@@ -547,7 +547,7 @@
   {
     "name": "getProposedFederatorPublicKeyOfType",
     "type": "function",
-    "constant": true,
+    "stateMutability": "view",
     "inputs": [
       {
         "name": "index",
@@ -568,7 +568,7 @@
   {
     "name": "getProposedFederationCreationTime",
     "type": "function",
-    "constant": true,
+    "stateMutability": "view",
     "inputs": [],
     "outputs": [
       {
@@ -580,7 +580,7 @@
   {
     "name": "getProposedFederationCreationBlockNumber",
     "type": "function",
-    "constant": true,
+    "stateMutability": "view",
     "inputs": [],
     "outputs": [
       {
@@ -592,7 +592,7 @@
   {
     "name": "getLockWhitelistSize",
     "type": "function",
-    "constant": true,
+    "stateMutability": "view",
     "inputs": [],
     "outputs": [
       {
@@ -604,7 +604,7 @@
   {
     "name": "getLockWhitelistAddress",
     "type": "function",
-    "constant": true,
+    "stateMutability": "view",
     "inputs": [
       {
         "name": "index",
@@ -621,7 +621,7 @@
   {
     "name": "getLockWhitelistEntryByAddress",
     "type": "function",
-    "constant": true,
+    "stateMutability": "view",
     "inputs": [
       {
         "name": "address",
@@ -638,7 +638,7 @@
   {
     "name": "addLockWhitelistAddress",
     "type": "function",
-    "constant": false,
+    "stateMutability": "nonpayable",
     "inputs": [
       {
         "name": "address",
@@ -659,7 +659,7 @@
   {
     "name": "addOneOffLockWhitelistAddress",
     "type": "function",
-    "constant": false,
+    "stateMutability": "nonpayable",
     "inputs": [
       {
         "name": "address",
@@ -680,7 +680,7 @@
   {
     "name": "addUnlimitedLockWhitelistAddress",
     "type": "function",
-    "constant": false,
+    "stateMutability": "nonpayable",
     "inputs": [
       {
         "name": "address",
@@ -697,7 +697,7 @@
   {
     "name": "removeLockWhitelistAddress",
     "type": "function",
-    "constant": false,
+    "stateMutability": "nonpayable",
     "inputs": [
       {
         "name": "address",
@@ -714,7 +714,7 @@
   {
     "name": "setLockWhitelistDisableBlockDelay",
     "type": "function",
-    "constant": false,
+    "stateMutability": "nonpayable",
     "inputs": [
       {
         "name": "disableDelay",
@@ -731,7 +731,7 @@
   {
     "name": "getFeePerKb",
     "type": "function",
-    "constant": true,
+    "stateMutability": "view",
     "inputs": [],
     "outputs": [
       {
@@ -743,7 +743,7 @@
   {
     "name": "voteFeePerKbChange",
     "type": "function",
-    "constant": false,
+    "stateMutability": "nonpayable",
     "inputs": [
       {
         "name": "feePerKb",
@@ -760,14 +760,14 @@
   {
     "name": "updateCollections",
     "type": "function",
-    "constant": false,
+    "stateMutability": "nonpayable",
     "inputs": [],
     "outputs": []
   },
   {
     "name": "getMinimumLockTxValue",
     "type": "function",
-    "constant": true,
+    "stateMutability": "pure",
     "inputs": [],
     "outputs": [
       {
@@ -779,7 +779,7 @@
   {
     "name": "getBtcTransactionConfirmations",
     "type": "function",
-    "constant": true,
+    "stateMutability": "view",
     "inputs": [
       {
         "name": "txHash",
@@ -808,7 +808,7 @@
   {
     "name": "getLockingCap",
     "type": "function",
-    "constant": true,
+    "stateMutability": "view",
     "inputs": [],
     "outputs": [
       {
@@ -820,7 +820,7 @@
   {
     "name": "increaseLockingCap",
     "type": "function",
-    "constant": true,
+    "stateMutability": "nonpayable",
     "inputs": [
       {
         "name": "newLockingCap",
@@ -837,7 +837,7 @@
   {
     "name": "registerBtcCoinbaseTransaction",
     "type": "function",
-    "constant": true,
+    "stateMutability": "nonpayable",
     "inputs": [
       {
         "name": "btcTxSerialized",
@@ -864,7 +864,7 @@
   {
     "name": "hasBtcBlockCoinbaseTransactionInformation",
     "type": "function",
-    "constant": true,
+    "stateMutability": "view",
     "inputs": [
       {
         "name": "blockHash",
@@ -881,7 +881,7 @@
   {
     "name": "registerFastBridgeBtcTransaction",
     "type": "function",
-    "constant": true,
+    "stateMutability": "nonpayable",
     "inputs": [
       {
         "name": "btcTxSerialized",
@@ -926,7 +926,7 @@
   {
     "name": "getActiveFederationCreationBlockHeight",
     "type": "function",
-    "constant": true,
+    "stateMutability": "view",
     "inputs": [],
     "outputs": [
       {
@@ -938,7 +938,7 @@
   {
     "name": "getBtcBlockchainBestBlockHeader",
     "type": "function",
-    "constant": true,
+    "stateMutability": "view",
     "inputs": [],
     "outputs": [
       {
@@ -950,7 +950,7 @@
   {
     "name": "getBtcBlockchainBlockHeaderByHash",
     "type": "function",
-    "constant": true,
+    "stateMutability": "view",
     "inputs": [
       {
         "name": "btcBlockHash",  
@@ -967,7 +967,7 @@
   {
     "name": "getBtcBlockchainBlockHeaderByHeight",
     "type": "function",
-    "constant": true,
+    "stateMutability": "view",
     "inputs": [
       {
         "name": "btcBlockHeight", 
@@ -984,7 +984,7 @@
   {
     "name": "getBtcBlockchainParentBlockHeaderByHash",
     "type": "function",
-    "constant": true,
+    "stateMutability": "view",
     "inputs": [
       {
         "name": "btcBlockHash", 
@@ -1001,7 +1001,7 @@
   {
     "name": "getEstimatedFeesForNextPegOutEvent",
     "type": "function",
-    "constant": true,
+    "stateMutability": "view",
     "inputs": [],
     "outputs": [
       {
@@ -1013,7 +1013,7 @@
   {
     "name": "getNextPegoutCreationBlockNumber",
     "type": "function",
-    "constant": true,
+    "stateMutability": "view",
     "inputs": [],
     "outputs": [
       {
@@ -1025,7 +1025,7 @@
   {
     "name": "getQueuedPegoutsCount",
     "type": "function",
-    "constant": true,
+    "stateMutability": "view",
     "inputs": [],
     "outputs": [
       {
@@ -1037,14 +1037,14 @@
   {
     "name": "releaseBtc",
     "type": "function",
-    "constant": true,
+    "stateMutability": "payable",
     "inputs": [],
     "outputs": []
   },
   {
     "name": "getActivePowpegRedeemScript",
     "type": "function",
-    "constant": true,
+    "stateMutability": "view",
     "inputs": [],
     "outputs": [
       {
