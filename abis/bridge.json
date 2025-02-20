@@ -15,7 +15,6 @@
     "name": "getStateForBtcReleaseClient",
     "type": "function",
     "stateMutability": "view",
-    "constant": "true",
     "inputs": [],
     "outputs": [
       {
@@ -28,7 +27,6 @@
     "name": "getStateForSvpClient",
     "type": "function",
     "stateMutability": "view",
-    "constant": "true",
     "inputs": [],
     "outputs": [
       {
@@ -40,7 +38,7 @@
   {
     "name": "getStateForDebugging",
     "type": "function",
-    "constant": "true",
+    "stateMutability": "view",
     "inputs": [],
     "outputs": [
       {
@@ -525,7 +523,7 @@
   {
     "name": "getProposedFederationAddress",
     "type": "function",
-
+    "stateMutability": "view",
     "inputs": [],
     "outputs": [
       {
@@ -1027,7 +1025,7 @@
   {
     "name": "getQueuedPegoutsCount",
     "type": "function",
-
+    "stateMutability": "view",
     "inputs": [],
     "outputs": [
       {
@@ -1039,7 +1037,7 @@
   {
     "name": "releaseBtc",
     "type": "function",
-
+    "stateMutability": "payable",
     "inputs": [],
     "outputs": []
   },
