@@ -136,6 +136,7 @@
         'getNextPegoutCreationBlockNumber',
         'getQueuedPegoutsCount',
         'getActivePowpegRedeemScript',
+        'getBtcTransactionConfirmations',
     ];
 
     const bridgeAddress = '0x0000000000000000000000000000000001000006';
@@ -148,6 +149,7 @@
     bridgeAddressElement.innerText = bridgeAddress;
     const bytes32FormatExample = '0x0000...1111';
     const txHashFormatExample = '1111...1111';
+    const bytes32ArrayFormatExample = '["0x0000...1111","0x0000...1111"]';
 
     const selectNetworkElement = document.getElementById('selectNetwork');
 
@@ -216,9 +218,12 @@
                 extraPlaceholder = `: ${bytes32FormatExample} (66 chars long with 0x prefix)`;
             } else if(input.type === 'string' && input.name === 'hash') {
                 extraPlaceholder = `: ${txHashFormatExample} (64 chars long, no 0x prefix)`;
+            } else if(input.type === 'bytes32[]') {
+                extraPlaceholder = `: ${bytes32ArrayFormatExample}`;
             }
             
             inputText.setAttribute('placeholder', `${input.type} ${input.name}${extraPlaceholder}`);
+            inputText.setAttribute('aria-label', `${input.type} ${input.name}`);
             inputElements.push(inputText);
         }
         return inputElements;
@@ -254,6 +259,19 @@
         }
     };
 
+    const isJsonArray = (jsonString) => {
+        try {
+            const parsed = JSON.parse(jsonString);
+            return Array.isArray(parsed);
+        } catch (error) {
+            return false;
+        }
+    };
+
+    const isValid32ByteHex = (hexString) => {
+        return hexString.startsWith('0x') && hexString.length === 66;
+    };
+
     const ensureAllInputsAreFilled = (inputs) => {
 
         const inputsIndicesWithoutValues = [];
@@ -265,38 +283,42 @@
         });
 
         if(inputsIndicesWithoutValues.length > 0) {
-            const inputsWithoutValues = inputsIndicesWithoutValues.map(index => inputs[index].placeholder.trim());
+            const inputsWithoutValues = inputsIndicesWithoutValues.map(index => inputs[index].getAttribute('aria-label'));
             const inputsWithoutValuesString = "\"" + inputsWithoutValues.join('", "') + "\"";
-            const message = `Inputs ${inputsWithoutValuesString} must be filled`;
+            const methodName = inputs[0].parentNode.querySelector('button').innerText;
+            const message = `Input(s) ${inputsWithoutValuesString} for "${methodName}" method must be filled`;
             alert(message);
             throw new Error(message);
         }
 
         const validateInput = (input, index) => {
+
             const placeholder = input.placeholder.trim();
             const inputType = placeholder.split(' ')[0].trim();
+            const methodName = input.parentNode.querySelector('button').innerText;
+            const argTypeAndNameLabel = input.getAttribute('aria-label');
+
             if(inputType === 'int256' || inputType === 'uint256') {
                 const value = Number(input.value);
                 if(isNaN(value)) {
-                    const message = `Input "${placeholder}" must be a number`;
+                    const message = `Input "${argTypeAndNameLabel}" for "${methodName}" method must be a number`;
                     alert(message);
                     throw new Error(message);
                 } else if(value < 0) {
-                    const message = `Input "${placeholder}" must be a positive number`;
+                    const message = `Input "${argTypeAndNameLabel}" must be a positive number`;
                     alert(message);
                     throw new Error(message);
                 }
             } else if(inputType === 'bytes32') {
-                const has0xPrefix = input.value.startsWith('0x');
-                if(!has0xPrefix || input.value.length !== 66) {
-                    const message = `Input "${placeholder.substring(0, 17)}" must be a 66 characters long hex string with the 0x prefix like: ${bytes32FormatExample}`;
+                if(!isValid32ByteHex(input.value)) {
+                    const message = `Input "${argTypeAndNameLabel}" for "${methodName}" method must be a 66 characters long hex string with the 0x prefix like: ${bytes32FormatExample}`;
                     alert(message);
                     throw new Error(message);
                 }
             } else if(placeholder === 'string type (rsk, btc or mst)') {
                 const value = input.value;
                 if(value !== 'rsk' && value !== 'btc' && value !== 'mst') {
-                    const message = `Input "${placeholder}" must be one of the following values (in lower case): rsk, btc or mst`;
+                    const message = `Input "${argTypeAndNameLabel}" for "${methodName}" method must be one of the following values (in lower case): rsk, btc or mst`;
                     alert(message);
                     throw new Error(message);
                 }
@@ -304,11 +326,26 @@
                 const value = input.value;
                 const has0xPrefix = value.startsWith('0x');
                 if(has0xPrefix || value.length !== 64) {
-                    const message = `Input "${placeholder.substring(0, 11)}" must be a 64 characters long hex string without the 0x prefix like: ${txHashFormatExample}`;
+                    const message = `Input "${argTypeAndNameLabel}" for "${methodName}" method must be a 64-character long hex string without the 0x prefix like: ${txHashFormatExample}`;
                     alert(message);
                     throw new Error(message);
                 }
+            } else if(inputType === 'bytes32[]') {
+                const message = `Input "${argTypeAndNameLabel}" for "${methodName}" method must be an array of 32-byte hashes like: ${bytes32ArrayFormatExample}`;
+                if(!isJsonArray(input.value)) {
+                    alert(message);
+                    throw new Error(message);
+                }
+                const parsedArray = JSON.parse(input.value);
+                for(let i = 0; i < parsedArray.length; i++) {
+                    if(!isValid32ByteHex(parsedArray[i])) {
+                        const message = `Each element of the array in input "${argTypeAndNameLabel}" for "${methodName}" method must be a 66 characters long hex string with the 0x prefix like: ${bytes32FormatExample}`;
+                        alert(message);
+                        throw new Error(message);
+                    }
+                }
             }
+
         };
 
         inputs.forEach(validateInput);
@@ -320,18 +357,18 @@
         const inputs = Array.from(button.parentNode.querySelectorAll('input'));
         ensureAllInputsAreFilled(inputs);
         const args = inputs.map(input => input.value);
-        const functionName = button.innerText;
+        const methodName = button.innerText;
 
         const displayElement = button.parentNode.querySelector('.display');
 
         displayElement.innerText = '';
 
         try {
-            const result = await bridge[functionName](...args);
+            const result = await bridge[methodName](...args);
             displayElement.innerText = result;
         } catch(error) {
             console.error(error);
-            alert(`There was an error calling '${functionName}': ${error.message}`);
+            alert(`There was an error calling '${methodName}': ${error.message}`);
         }
 
     };
