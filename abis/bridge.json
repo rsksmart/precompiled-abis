@@ -1054,6 +1054,114 @@
     ]
   },
   {
+    "name": "setUnionBridgeContractAddressForTestnet",
+    "type": "function",
+    "stateMutability": "nonpayable",
+    "inputs": [
+      {
+        "name": "unionBridgeContractAddress",
+        "type": "address"
+      }
+    ],
+    "outputs": [
+        {
+            "name": "",
+            "type": "int"
+        }
+    ]
+  },
+  {
+    "name": "getUnionBridgeContractAddress",
+    "type": "function",
+    "stateMutability": "view",
+    "inputs": [],
+    "outputs": [
+      {
+        "name": "",
+        "type": "address"
+      }
+    ]
+  },
+  {
+    "name": "getUnionBridgeLockingCap",
+    "type": "function",
+    "stateMutability": "view",
+    "inputs": [],
+    "outputs": [
+      {
+        "name": "",
+        "type": "int256"
+      }
+    ]
+  },
+  {
+    "name": "increaseUnionBridgeLockingCap",
+    "type": "function",
+    "stateMutability": "nonpayable",
+    "inputs": [
+      {
+        "name": "newLockingCap",
+        "type": "int256"
+      }
+    ],
+    "outputs": [
+      {
+        "name": "",
+        "type": "int"
+      }
+    ]
+  },
+  {
+    "name": "requestUnionBridgeRbtc",
+    "type": "function",
+    "stateMutability": "nonpayable",
+    "inputs": [
+      {
+        "name": "amountRequested",
+        "type": "int256"
+      }
+    ],
+    "outputs": [
+      {
+        "name": "",
+        "type": "int"
+      }
+    ]
+  },
+  {
+    "name": "releaseUnionBridgeRbtc",
+    "type": "function",
+    "stateMutability": "payable",
+    "inputs": [],
+    "outputs": [
+      {
+        "name": "",
+        "type": "int"
+      }
+    ]
+  },
+  {
+    "name": "setUnionBridgeTransferPermissions",
+    "type": "function",
+    "stateMutability": "nonpayable",
+    "inputs": [
+      {
+        "name": "requestEnabled",
+        "type": "bool"
+      },
+      {
+        "name": "releaseEnabled",
+        "type": "bool"
+      }
+    ],
+    "outputs": [
+      {
+        "name": "",
+        "type": "int"
+      }
+    ]
+  },
+  {
     "anonymous": false,
     "inputs": [
       {
@@ -1179,7 +1287,7 @@
     ],
     "name": "commit_federation_failed",
     "type": "event"
-  },  
+  },
   {
     "anonymous": false,
     "inputs": [
@@ -1356,6 +1464,85 @@
       }
     ],
     "name": "pegout_transaction_created",
+    "type": "event"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": true,
+        "name": "caller",
+        "type": "address"
+      },
+      {
+        "indexed": false,
+        "name": "previousLockingCap",
+        "type": "int256"
+      }
+    ,
+      {
+        "indexed": false,
+        "name": "newLockingCap",
+        "type": "int256"
+      }
+    ],
+    "name": "union_bridge_locking_cap_increased",
+    "type": "event"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": true,
+        "name": "requester",
+        "type": "address"
+      },
+      {
+        "indexed": false,
+        "name": "amount",
+        "type": "int256"
+      }
+    ],
+    "name": "union_rbtc_requested",
+    "type": "event"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": true,
+        "name": "receiver",
+        "type": "address"
+      },
+      {
+        "indexed": false,
+        "name": "amount",
+        "type": "int256"
+      }
+    ],
+    "name": "union_rbtc_released",
+    "type": "event"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": true,
+        "name": "caller",
+        "type": "address"
+      },
+      {
+        "indexed": false,
+        "name": "enablePowPegToUnionBridge",
+        "type": "bool"
+      },
+      {
+        "indexed": false,
+        "name": "enableUnionBridgeToPowPeg",
+        "type": "bool"
+      }
+    ],
+    "name": "union_bridge_transfer_permissions_updated",
     "type": "event"
   }
 ]

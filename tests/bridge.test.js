@@ -10,7 +10,7 @@ describe('Bridge', () => {
     });
 
     it('has all the expected signatures', () => {
-        assert.equal(bridge.abi.length, 83);
+        assert.equal(bridge.abi.length, 94);
     });
 
     it('should build the bridge contract with Ethers', () => {
@@ -21,7 +21,7 @@ describe('Bridge', () => {
 
     it('has all the expected functions with the expected properties', () => {
         const functions = bridge.abi.filter(item => item.type === 'function');
-        assert.equal(functions.length, 68);
+        assert.equal(functions.length, 75);
 
         functions.forEach(func => {
             assertFunctionHasNotDeprecatedProperties(func);
@@ -31,7 +31,7 @@ describe('Bridge', () => {
 
     it('has all the expected events with the expected properties', () => {
         const events = bridge.abi.filter(item => item.type === 'event');
-        assert.equal(events.length, 15);
+        assert.equal(events.length, 19);
 
         events.forEach(func => {
             assertEventHasExpectedFields(func);
