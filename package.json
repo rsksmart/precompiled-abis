@@ -1,6 +1,6 @@
 {
   "name": "@rsksmart/rsk-precompiled-abis",
-  "version": "7.1.0-LOVELL",
+  "version": "8.0.0-REED",
   "description": "Utility to interact with RSK native contracts",
   "main": "index.js",
   "repository": {

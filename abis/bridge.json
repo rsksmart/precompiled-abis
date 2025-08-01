@@ -1090,7 +1090,7 @@
     "outputs": [
       {
         "name": "",
-        "type": "int256"
+        "type": "uint256"
       }
     ]
   },
@@ -1101,7 +1101,7 @@
     "inputs": [
       {
         "name": "newLockingCap",
-        "type": "int256"
+        "type": "uint256"
       }
     ],
     "outputs": [
@@ -1118,7 +1118,7 @@
     "inputs": [
       {
         "name": "amountRequested",
-        "type": "int256"
+        "type": "uint256"
       }
     ],
     "outputs": [
@@ -1477,13 +1477,13 @@
       {
         "indexed": false,
         "name": "previousLockingCap",
-        "type": "int256"
+        "type": "uint256"
       }
     ,
       {
         "indexed": false,
         "name": "newLockingCap",
-        "type": "int256"
+        "type": "uint256"
       }
     ],
     "name": "union_bridge_locking_cap_increased",
@@ -1500,7 +1500,7 @@
       {
         "indexed": false,
         "name": "amount",
-        "type": "int256"
+        "type": "uint256"
       }
     ],
     "name": "union_rbtc_requested",
@@ -1517,7 +1517,7 @@
       {
         "indexed": false,
         "name": "amount",
-        "type": "int256"
+        "type": "uint256"
       }
     ],
     "name": "union_rbtc_released",
