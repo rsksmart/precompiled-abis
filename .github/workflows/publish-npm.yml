@@ -71,7 +71,7 @@ jobs:
             echo "Package Repository: ${{ steps.get_package_info.outputs.PACKAGE_REPOSITORY }}"
 
         - name: Setup NodeJS
-          uses: actions/setup-node@39370e3970a6d050c480ffad4ff0ed4d3fdee5af # v4.1.0
+          uses: actions/setup-node@a0853c24544627f65ddf259abe73b1d18a591444 # v5.0.0
           with:
             node-version-file: '.nvmrc'
             cache: 'npm'
