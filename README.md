@@ -1,4 +1,4 @@
-![Github CI/CD](https://github.com/rsksmart/precompiled-abis/actions/workflows/workflow.yml/badge.svg)
+![Github CI/CD](https://github.com/rsksmart/precompiled-abis/actions/workflows/build-test.yml/badge.svg)
 [![CodeQL](https://github.com/rsksmart/precompiled-abis/workflows/CodeQL/badge.svg)](https://github.com/rsksmart/precompiled-abis/actions?query=workflow%3ACodeQL)
 [![OpenSSF Scorecard](https://api.scorecard.dev/projects/github.com/rsksmart/precompiled-abis/badge)](https://scorecard.dev/viewer/?uri=github.com/rsksmart/precompiled-abis)
 
