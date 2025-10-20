@@ -1179,7 +1179,7 @@
     "stateMutability": "nonpayable",
     "inputs": [
       {
-        "name": "superEventData",
+        "name": "superEvent",
         "type": "bytes"
       }
     ],
@@ -1210,7 +1210,7 @@
     "stateMutability": "nonpayable",
     "inputs": [
       {
-        "name": "baseEventData",
+        "name": "baseEvent",
         "type": "bytes"
       }
     ],
