@@ -10,7 +10,7 @@ describe('Bridge', () => {
     });
 
     it('has all the expected signatures', () => {
-        assert.equal(bridge.abi.length, 94);
+        assert.equal(bridge.abi.length, 100);
     });
 
     it('should build the bridge contract with Ethers', () => {
@@ -21,7 +21,7 @@ describe('Bridge', () => {
 
     it('has all the expected functions with the expected properties', () => {
         const functions = bridge.abi.filter(item => item.type === 'function');
-        assert.equal(functions.length, 75);
+        assert.equal(functions.length, 81);
 
         functions.forEach(func => {
             assertFunctionHasNotDeprecatedProperties(func);
