@@ -1162,6 +1162,68 @@
     ]
   },
   {
+    "name": "getSuperEvent",
+    "type": "function",
+    "stateMutability": "view",
+    "inputs": [],
+    "outputs": [
+      {
+        "name": "",
+        "type": "bytes"
+      }
+    ]
+  },
+  {
+    "name": "setSuperEvent",
+    "type": "function",
+    "stateMutability": "nonpayable",
+    "inputs": [
+      {
+        "name": "superEvent",
+        "type": "bytes"
+      }
+    ],
+    "outputs": []
+  },
+  {
+    "name": "clearSuperEvent",
+    "type": "function",
+    "stateMutability": "nonpayable",
+    "inputs": [],
+    "outputs": []
+  },
+  {
+    "name": "getBaseEvent",
+    "type": "function",
+    "stateMutability": "view",
+    "inputs": [],
+    "outputs": [
+      {
+        "name": "",
+        "type": "bytes"
+      }
+    ]
+  },
+  {
+    "name": "setBaseEvent",
+    "type": "function",
+    "stateMutability": "nonpayable",
+    "inputs": [
+      {
+        "name": "baseEvent",
+        "type": "bytes"
+      }
+    ],
+    "outputs": []
+  },
+  {
+    "name": "clearBaseEvent",
+    "type": "function",
+    "stateMutability": "nonpayable",
+    "inputs": [],
+    "outputs": []
+  },
+  {
     "anonymous": false,
     "inputs": [
       {
