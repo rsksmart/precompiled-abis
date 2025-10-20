@@ -1164,7 +1164,7 @@
   {
     "name": "getSuperEvent",
     "type": "function",
-    "stateMutability": "nonpayable",
+    "stateMutability": "view",
     "inputs": [],
     "outputs": [
       {
@@ -1195,7 +1195,7 @@
   {
     "name": "getBaseEvent",
     "type": "function",
-    "stateMutability": "nonpayable",
+    "stateMutability": "view",
     "inputs": [],
     "outputs": [
       {
