@@ -1,0 +1,139 @@
+[
+  {
+    "type": "function",
+    "name": "getCoinbaseAddress",
+    "stateMutability": "view",
+    "payable": false,
+    "inputs": [
+      { "name": "blockDepth", "type": "int256" }
+    ],
+    "outputs": [
+      { "name": "", "type": "bytes" }
+    ]
+  },
+  {
+    "type": "function",
+    "name": "getBlockHash",
+    "stateMutability": "view",
+    "payable": false,
+    "inputs": [
+      { "name": "blockDepth", "type": "int256" }
+    ],
+    "outputs": [
+      { "name": "", "type": "bytes" }
+    ]
+  },
+  {
+    "type": "function",
+    "name": "getMergedMiningTags",
+    "stateMutability": "view",
+    "payable": false,
+    "inputs": [
+      { "name": "blockDepth", "type": "int256" }
+    ],
+    "outputs": [
+      { "name": "", "type": "bytes" }
+    ]
+  },
+  {
+    "type": "function",
+    "name": "getMinGasPrice",
+    "stateMutability": "view",
+    "payable": false,
+    "inputs": [
+      { "name": "blockDepth", "type": "int256" }
+    ],
+    "outputs": [
+      { "name": "", "type": "bytes" }
+    ]
+  },
+  {
+    "type": "function",
+    "name": "getGasLimit",
+    "stateMutability": "view",
+    "payable": false,
+    "inputs": [
+      { "name": "blockDepth", "type": "int256" }
+    ],
+    "outputs": [
+      { "name": "", "type": "bytes" }
+    ]
+  },
+  {
+    "type": "function",
+    "name": "getGasUsed",
+    "stateMutability": "view",
+    "payable": false,
+    "inputs": [
+      { "name": "blockDepth", "type": "int256" }
+    ],
+    "outputs": [
+      { "name": "", "type": "bytes" }
+    ]
+  },
+  {
+    "type": "function",
+    "name": "getDifficulty",
+    "stateMutability": "view",
+    "payable": false,
+    "inputs": [
+      { "name": "blockDepth", "type": "int256" }
+    ],
+    "outputs": [
+      { "name": "", "type": "bytes" }
+    ]
+  },
+  {
+    "type": "function",
+    "name": "getBitcoinHeader",
+
+    "stateMutability": "view",
+    "payable": false,
+    "inputs": [
+      { "name": "blockDepth", "type": "int256" }
+    ],
+    "outputs": [
+      { "name": "", "type": "bytes" }
+    ]
+  },
+  {
+    "type": "function",
+    "name": "getUncleCoinbaseAddress",
+
+    "stateMutability": "view",
+    "payable": false,
+    "inputs": [
+      { "name": "blockDepth", "type": "int256" },
+      { "name": "uncleIndex", "type": "int256" }
+    ],
+    "outputs": [
+      { "name": "", "type": "bytes" }
+    ]
+  },
+  {
+    "type": "function",
+    "name": "getDifficultyWithUncles",
+
+    "stateMutability": "view",
+    "payable": false,
+    "inputs": [
+      { "name": "blockDepth", "type": "int256" }
+    ],
+    "outputs": [
+      { "name": "", "type": "bytes" }
+    ]
+  },
+  {
+    "type": "function",
+    "name": "getCumulativeWork",
+
+    "stateMutability": "view",
+    "payable": false,
+    "inputs": [
+      { "name": "blockDepth", "type": "int256" }
+    ],
+    "outputs": [
+      { "name": "", "type": "bytes" }
+    ]
+  }
+]
