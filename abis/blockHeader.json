@@ -1,7 +1,7 @@
 [
   {
     "type": "function",
-    "name": "getCoinbaseAddress",
+    "name": "getBitcoinHeader",
     "stateMutability": "view",
     "payable": false,
     "inputs": [
@@ -25,7 +25,7 @@
   },
   {
     "type": "function",
-    "name": "getMergedMiningTags",
+    "name": "getCoinbaseAddress",
     "stateMutability": "view",
     "payable": false,
     "inputs": [
@@ -37,7 +37,31 @@
   },
   {
     "type": "function",
-    "name": "getMinGasPrice",
+    "name": "getCumulativeWork",
+    "stateMutability": "view",
+    "payable": false,
+    "inputs": [
+      { "name": "blockDepth", "type": "int256" }
+    ],
+    "outputs": [
+      { "name": "", "type": "bytes" }
+    ]
+  },
+  {
+    "type": "function",
+    "name": "getDifficulty",
+    "stateMutability": "view",
+    "payable": false,
+    "inputs": [
+      { "name": "blockDepth", "type": "int256" }
+    ],
+    "outputs": [
+      { "name": "", "type": "bytes" }
+    ]
+  },
+  {
+    "type": "function",
+    "name": "getDifficultyWithUncles",
     "stateMutability": "view",
     "payable": false,
     "inputs": [
@@ -73,7 +97,7 @@
   },
   {
     "type": "function",
-    "name": "getDifficulty",
+    "name": "getMergedMiningTags",
     "stateMutability": "view",
     "payable": false,
     "inputs": [
@@ -85,8 +109,7 @@
   },
   {
     "type": "function",
-    "name": "getBitcoinHeader",
-
+    "name": "getMinGasPrice",
     "stateMutability": "view",
     "payable": false,
     "inputs": [
@@ -99,38 +122,11 @@
   {
     "type": "function",
     "name": "getUncleCoinbaseAddress",
-
     "stateMutability": "view",
     "payable": false,
     "inputs": [
       { "name": "blockDepth", "type": "int256" },
       { "name": "uncleIndex", "type": "int256" }
-    ],
-    "outputs": [
-      { "name": "", "type": "bytes" }
-    ]
-  },
-  {
-    "type": "function",
-    "name": "getDifficultyWithUncles",
-
-    "stateMutability": "view",
-    "payable": false,
-    "inputs": [
-      { "name": "blockDepth", "type": "int256" }
-    ],
-    "outputs": [
-      { "name": "", "type": "bytes" }
-    ]
-  },
-  {
-    "type": "function",
-    "name": "getCumulativeWork",
-
-    "stateMutability": "view",
-    "payable": false,
-    "inputs": [
-      { "name": "blockDepth", "type": "int256" }
     ],
     "outputs": [
       { "name": "", "type": "bytes" }
