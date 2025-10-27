@@ -1,4 +1,5 @@
 module.exports = {
-   bridge: require('./bridge'),
-   hdWalletUtils: require('./hdWalletUtils')
+    bridge: require('./bridge'),
+    hdWalletUtils: require('./hdWalletUtils'),
+    blockHeader: require('./blockHeader')
 };

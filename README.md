@@ -34,8 +34,11 @@ const networkUrl = 'https://public-node.rsk.co/';
 
 const provider = new ethers.JsonRpcProvider(networkUrl);
 const bridge = new ethers.Contract(precompiledAbis.bridge.address, precompiledAbis.bridge.abi, provider);
+const blockHeader = new ethers.Contract(precompiledAbis.blockHeader.address, precompiledAbis.blockHeader.abi, provider);
 
 bridge.getBtcBlockchainBestChainHeight().then(console.log);
+// block depth: 0 = executing parent block
+blockHeader.getBlockHash(0).then(console.log);
 
 ```
 
@@ -67,7 +70,22 @@ const getBlockchainHeight = async () => {
   }
 };
 
+const getLatestBlockHash = async () => {
+  try {
+    const hashBytes = await client.readContract({
+      address: precompiledAbis.blockHeader.address,
+      abi: precompiledAbis.blockHeader.abi,
+      functionName: "getBlockHash",
+      args: [0], // executing parent block
+    });
+    console.log("latestBlockHash(bytes):", hashBytes);
+  } catch (error) {
+    console.error("Error getting block header hash:", error);
+  }
+};
+
 getBlockchainHeight();
+getLatestBlockHash();
 
 ```
 
