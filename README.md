@@ -10,7 +10,7 @@ Here you will find the ABIs for the existing precompiled contracts in Rootstock.
 
 # Version
 
-Different versions of the package mentioned are required for different Rootstock releases. For each named release of Rootstock, there will be a corresponding name version in npm.
+Different versions of the package mentioned are required for different Rootstock releases. For each named release of Rootstock, there will be a corresponding name version in npm. See [releases](https://github.com/rsksmart/precompiled-abis/releases) page.
 
 This package's support starts with ORCHID.
 
