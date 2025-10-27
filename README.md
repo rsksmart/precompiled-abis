@@ -10,9 +10,7 @@ Here you will find the ABIs for the existing precompiled contracts in Rootstock.
 
 # Version
 
-Different versions of the package mentioned are required for different Rootstock releases.
-
-Until Fingerroot, the semantic versioning of this package doesn’t correlate to the semantic versioning of Rootstock. For each named release of Rootstock, there will be a corresponding name version in npm.
+Different versions of the package mentioned are required for different Rootstock releases. For each named release of Rootstock, there will be a corresponding name version in npm. See [releases](https://github.com/rsksmart/precompiled-abis/releases) page.
 
 This package's support starts with ORCHID.
 
@@ -94,23 +92,6 @@ That would print something like: `881524n`.
 # Important note
 
 If the version to be installed is not defined in the command line, it will install the latest version by default.
-
-# Versioning table
-
-| Package Version  | RSK version      |
-|------------------|------------------|
-| 1.0.0-ORCHID     | ORCHID-0.6.2     |
-| 2.0.0-WASABI     | WASABI-1.0.0     |
-| 2.0.1-WASABI     | WASABI-1.0.0     |
-| 3.0.0-PAPYRUS    | PAPYRUS-2.0.0    |
-| 4.0.0-IRIS       | IRIS-3.0.0       |
-| 4.0.2-IRIS       | IRIS-3.0.0       |
-| 5.0.0-HOP        | HOP-4.0.0        |
-| 5.0.0-FINGERROOT | FINGERROOT-5.0.0 |
-| 6.0.0-ARROWHEAD  | ARROWHEAD-6.0.0  |
-| 7.0.0-LOVELL     | LOVELL-7.0.0     |
-| 8.0.0-REED       | REED-8.0.0       |
-| 9.0.0-VETIVER    | VETIVER-9.0.0    |
 
 # Rootstock Bridge Methods Selectors and Events Topics page
 
