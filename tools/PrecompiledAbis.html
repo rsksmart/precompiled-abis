@@ -85,7 +85,8 @@
                 </div>
                 <div class="col-9">
                     <select id='abiForForkSelect' class='form-select form-select-sm' aria-label=''>
-                        <option selected value='lovell'>Lovell</option>
+                        <option selected value='reed'>Reed</option>
+                        <option value='lovell'>Lovell</option>
                         <option value='arrowhead'>Arrowhead</option>
                         <option value='fingerroot'>Fingerroot</option>
                         <option value='hop'>Hop</option>
@@ -165,6 +166,7 @@
     const fingerrootAbisUrl = 'https://raw.githubusercontent.com/rsksmart/precompiled-abis/5.0.0-FINGERROOT/abis/bridge.json';
     const arrowheadAbisUrl = 'https://raw.githubusercontent.com/rsksmart/precompiled-abis/6.0.0-ARROWHEAD/abis/bridge.json';
     const lovellAbisUrl = 'https://raw.githubusercontent.com/rsksmart/precompiled-abis/7.0.0-LOVELL/abis/bridge.json';
+    const reedAbisUrl = 'https://raw.githubusercontent.com/rsksmart/precompiled-abis/8.0.0-REED/abis/bridge.json';
 
     const abisForkInfoMap = {
         orchid: {
@@ -206,7 +208,12 @@
             name: '7.0.0-LOVELL',
             key: 'lovell',
             url: lovellAbisUrl
-        }
+        },
+        reed: {
+            name: '8.0.0-REED',
+            key: 'reed',
+            url: reedAbisUrl
+        },
     };
 
     const abiCache = {
@@ -218,6 +225,7 @@
         fingerroot: null,
         arrowhead: null,
         lovell: null,
+        reed: null,
     };
 
     const peginMethods = [
@@ -267,7 +275,7 @@
     ];
 
     let selectedAbis = null;
-    let selectedAbiForkInfo = abisForkInfoMap.lovell;
+    let selectedAbiForkInfo = abisForkInfoMap.reed;
 
     selectedAbisUrl.href = selectedAbiForkInfo.url;
     selectedAbisUrl.textContent = selectedAbiForkInfo.url;
