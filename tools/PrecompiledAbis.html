@@ -167,6 +167,7 @@
     const arrowheadAbisUrl = 'https://raw.githubusercontent.com/rsksmart/precompiled-abis/6.0.0-ARROWHEAD/abis/bridge.json';
     const lovellAbisUrl = 'https://raw.githubusercontent.com/rsksmart/precompiled-abis/7.0.0-LOVELL/abis/bridge.json';
     const reedAbisUrl = 'https://raw.githubusercontent.com/rsksmart/precompiled-abis/8.0.0-REED/abis/bridge.json';
+    const reed810AbisUrl = 'https://raw.githubusercontent.com/rsksmart/precompiled-abis/8.1.0-REED/abis/bridge.json';
 
     const abisForkInfoMap = {
         orchid: {
@@ -214,6 +215,11 @@
             key: 'reed',
             url: reedAbisUrl
         },
+        reed810: {
+            name: '8.1.0-REED',
+            key: 'reed810',
+            url: reed810AbisUrl
+        },
     };
 
     const abiCache = {
@@ -226,6 +232,7 @@
         arrowhead: null,
         lovell: null,
         reed: null,
+        reed810: null,
     };
 
     const peginMethods = [
@@ -275,7 +282,7 @@
     ];
 
     let selectedAbis = null;
-    let selectedAbiForkInfo = abisForkInfoMap.reed;
+    let selectedAbiForkInfo = abisForkInfoMap.reed810;
 
     selectedAbisUrl.href = selectedAbiForkInfo.url;
     selectedAbisUrl.textContent = selectedAbiForkInfo.url;
