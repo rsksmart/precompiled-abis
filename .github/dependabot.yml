@@ -2,32 +2,76 @@ version: 2
 updates:
   - package-ecosystem: github-actions
     directory: "/"
+    target-branch: master
     schedule:
       interval: "weekly"
-    ignore:
-      - dependency-name: "*"
-        update-types: ["version-update:semver-patch"]
+    # Wait at least 10 days after a new version is released before opening a PR
+    cooldown:
+      default-days: 10
+    labels:
+      - "dependencies"
+      - "github_actions"
+    # one PR per week that groups BOTH minor + patch updates
     groups:
-      actions-minor:
+      actions-updates:
         applies-to: version-updates
         patterns:
           - "*"
         update-types:
-          - "minor"
+          - minor
+          - patch
+  - package-ecosystem: github-actions
+    directory: "/"
+    schedule:
+      interval: "daily"
+    # Wait at least 1 day after a security update is released before opening a PR
+    cooldown:
+      default-days: 1
+    labels:
+      - "dependencies"
+      - "github_actions"
+      - "security"
+    # one PR per day that groups security updates
+    groups:
+      security:
+        applies-to: security-updates
+        patterns:
+          - "*"
 
   - package-ecosystem: npm
     directory: "/"
+    target-branch: master
     schedule:
       interval: "weekly"
-    versioning-strategy: increase
-    ignore:
-      - dependency-name: "*"
-        update-types: ["version-update:semver-patch"]
+    # Wait at least 10 days after a new version is released before opening a PR
+    cooldown:
+      default-days: 10
+    labels:
+      - "dependencies"
+      - "npm"
+    # one PR per week that groups BOTH minor + patch updates
     groups:
-      npm-minor:
+      actions-updates:
         applies-to: version-updates
         patterns:
           - "*"
         update-types:
-          - "minor"
-          
+          - minor
+          - patch
+  - package-ecosystem: npm
+    directory: "/"
+    schedule:
+      interval: "daily"
+    # Wait at least 1 day after a security update is released before opening a PR
+    cooldown:
+      default-days: 1
+    labels:
+      - "dependencies"
+      - "npm"
+      - "security"
+    # one PR per day that groups security updates
+    groups:
+      security:
+        applies-to: security-updates
+        patterns:
+          - "*"
