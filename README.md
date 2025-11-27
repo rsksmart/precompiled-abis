@@ -1,6 +1,6 @@
-[![Build and Test](https://github.com/rsksmart/precompiled-abis/actions/workflows/build-test.yml/badge.svg)](https://github.com/rsksmart/precompiled-abis/actions/workflows/build-test.yml)
-[![CodeQL](https://github.com/rsksmart/precompiled-abis/workflows/CodeQL/badge.svg)](https://github.com/rsksmart/precompiled-abis/actions?query=workflow%3ACodeQL)
-[![OpenSSF Scorecard](https://api.scorecard.dev/projects/github.com/rsksmart/precompiled-abis/badge)](https://scorecard.dev/viewer/?uri=github.com/rsksmart/precompiled-abis)
+[![Build and Test](https://github.com/rsksmart/rsk-precompiled-abis/actions/workflows/build-test.yml/badge.svg)](https://github.com/rsksmart/rsk-precompiled-abis/actions/workflows/build-test.yml)
+[![CodeQL](https://github.com/rsksmart/rsk-precompiled-abis/workflows/CodeQL/badge.svg)](https://github.com/rsksmart/rsk-precompiled-abis/actions?query=workflow%3ACodeQL)
+[![OpenSSF Scorecard](https://api.scorecard.dev/projects/github.com/rsksmart/rsk-precompiled-abis/badge)](https://scorecard.dev/viewer/?uri=github.com/rsksmart/rsk-precompiled-abis)
 
 <img src="./rootstock_logo.png" alt="Rootstock" />
 
@@ -10,7 +10,7 @@ Here you will find the ABIs for the existing precompiled contracts in Rootstock.
 
 # Version
 
-Different versions of the package mentioned are required for different Rootstock releases. For each named release of Rootstock, there will be a corresponding name version in npm. See [releases](https://github.com/rsksmart/precompiled-abis/releases) page.
+Different versions of the package mentioned are required for different Rootstock releases. For each named release of Rootstock, there will be a corresponding name version in npm. See [releases](https://github.com/rsksmart/rsk-precompiled-abis/releases) page.
 
 This package's support starts with ORCHID.
 

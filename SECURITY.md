@@ -5,11 +5,11 @@ The Rootstock team and community take security bugs in rootstock seriously. Besi
 
 ## Responsible Disclosure
 
-For all security related issues, we have two main points of contact. Reach us at <security@rootstocklabs.com> or use the GitHub Security Advisory ["Report a Vulnerability"](https://github.com/rsksmart/precompiled-abis/security/advisories/new) tab.
+For all security related issues, we have two main points of contact. Reach us at <security@rootstocklabs.com> or use the GitHub Security Advisory ["Report a Vulnerability"](https://github.com/rsksmart/rsk-precompiled-abis/security/advisories/new) tab.
 
 The Rootstock team will send a response indicating the next steps in handling your report. After the initial reply to your report, the security team will keep you informed of the progress towards a fix and full announcement, and may ask for additional information or guidance.
 
-**Ensure the bug was not already reported** by searching on GitHub under [Issues](https://github.com/rsksmart/precompiled-abis/issues).
+**Ensure the bug was not already reported** by searching on GitHub under [Issues](https://github.com/rsksmart/rsk-precompiled-abis/issues).
 
 ## Vulnerability Handling
 
