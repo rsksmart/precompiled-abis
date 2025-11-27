@@ -75,9 +75,6 @@ jobs:
       - name: Update npm
         run: npm install -g npm@latest
 
-      - name: Build
-        run: npm run build
-
       - name: Pre upload validation
         id: pack
         run: | 
