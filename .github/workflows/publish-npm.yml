@@ -34,7 +34,7 @@ jobs:
         run: |
           echo PACKAGE_NAME=$(cat package.json | jq -r .name | cut -f2 -d"\"" | cut -f2 -d"@") >> $GITHUB_OUTPUT
           echo PACKAGE_VERSION="refs/tags/"$(cat package.json | jq -r .version) >> $GITHUB_OUTPUT
-          echo PACKAGE_REPOSITORY=$(cat package.json | jq -r .repository.url | sed 's/\+https//') >> $GITHUB_OUTPUT
+          echo PACKAGE_REPOSITORY=$(cat package.json | jq -r .repository.url | sed 's/^[^:]*:/git:/') >> $GITHUB_OUTPUT
         id: get_package_info
 
       - name: Print outputs for debugging
