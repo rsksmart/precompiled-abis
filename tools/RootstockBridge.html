@@ -246,7 +246,7 @@
     };
 
     const getBridgeAbi = async () => {
-        const url = 'https://raw.githubusercontent.com/rsksmart/precompiled-abis/master/abis/bridge.json';
+        const url = 'https://raw.githubusercontent.com/rsksmart/rsk-precompiled-abis/master/abis/bridge.json';
         const response = await fetch(url, { mode: 'cors' });
         const bridgeAbi = await response.json();
         return bridgeAbi;
