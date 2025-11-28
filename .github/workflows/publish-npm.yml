@@ -96,7 +96,7 @@ jobs:
           echo "Version $PACKAGE_VERSION of $PACKAGE_NAME is not published. Proceeding with publishing..."
 
       - name: Upload package
-        run: npm publish --tag $PACKAGE_VERSION
+        run: npm publish --tag=$PACKAGE_VERSION
       
       - name: Post upload validation
         id: unpack
